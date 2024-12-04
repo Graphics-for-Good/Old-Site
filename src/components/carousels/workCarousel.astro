@@ -5,6 +5,7 @@ import LargeImage from '../largeImage.astro'
 const { carouselIndex } = Astro.props
 
 var images = []
+var fullRes = []
 
 var imgs = []// await Astro.glob('../../../members/*/portfolio/*/*')
 
@@ -13,24 +14,16 @@ imgs.forEach(img => {
     
     if (typeof img === 'object') {
         if (img.src === 'info.js') return
-        img.username = m.username
-
-        var fullRes = members[i].fullRes.filter(r => r.name === getFNameNoExt(img.src))
-        if (fullRes.length > 0) {
-            img.fullRes = fullRes[0].src
-        }
+        img.username = img.username
 
         var alreadyHas = images.filter(i => getFNameNoExt(i.src) === getFNameNoExt(img.src))
         if (!alreadyHas) images.push(img)
     }
-    else members[i].fullRes.push(getFNameNoExt(img))
+    else fullRes.push(getFNameNoExt(img))
 })
 
 images.forEach((img, i) => {
-    var username = img.username
-    var member = members.filter(m => m.username === username)[0]
-        
-    var fullRes = member.fullRes.filter(r => r.name === getFNameNoExt(img.src))
+    var fullRes = fullRes.filter(r => r.name === getFNameNoExt(img.src))
     if (fullRes.length > 0) {
         img.fullRes = fullRes[0].src
     }
