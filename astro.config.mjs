@@ -17,6 +17,7 @@ members.forEach((username, i) => {
             if (fs.lstatSync(`${mPath}/${username}/portfolio/`).isDirectory()) {
                 var items = fs.readdirSync(`${mPath}/${username}/portfolio/`)
                 items.forEach(item => {
+                    if (fs.lstatSync(`${mPath}/${username}/portfolio/${item}`).isDirectory()) return
                     var obj = {
                         username: username,
                         file: item
@@ -25,11 +26,11 @@ members.forEach((username, i) => {
                     if (!fs.existsSync(`${mPath}/${username}/portfolio/${getFNameNoExt(item)}/`)) {
                         fs.mkdirSync(`${mPath}/${username}/portfolio/${getFNameNoExt(item)}/`)
                     }
-                    fs.copySync(`${mPath}/${username}/portfolio/${item}`, `${mPath}/${username}/portfolio/${getFNameNoExt(item)}/${item}`)
+                    fs.moveSync(`${mPath}/${username}/portfolio/${item}`, `${mPath}/${username}/portfolio/${getFNameNoExt(item)}/${item}`)
 
                     obj.src = 'info.js'
                     obj = `var data = ${JSON.stringify(obj, null, 4)}\n\nexport default data`
-                    fs.writeFileSync(`${mPath}/${username}/portfolio/${getFNameNoExt(item)}/info.js`)
+                    fs.writeFileSync(`${mPath}/${username}/portfolio/${getFNameNoExt(item)}/info.js`, obj)
                 })
             }
         }
@@ -59,26 +60,20 @@ function getFName(str) {
 }
 
 function getFNameNoExt(str) {
-  if (str.includes('/')) str = str.split('/').slice(-1)[0]
-  str = str.slice(0, -1*getFExt(str, 2).length)
-  return str
+    if (str.includes('/')) str = str.split('/').slice(-1)[0]
+    str = str.slice(0, -1*getFExt(str).length)
+    return str
 }
 
-function getFExt(str, level=1) {
-  str = getFName(str)
-  if (level > 0) level *= -1
-  if (str.includes('.')) {
-    str = str.split('.')
-    switch (level) {
-      case 0: 
-        break
-      default: 
-        str = str.slice(level)
-        break
+function getFExt(str) {
+    str = getFName(str)
+    if (str.includes('.')) {
+        str = str.split('.')
+        str = str.slice(-1)
+        str = str.join('.')
+        str = `.${str}`
     }
-    str = str.join('.')
-  }
-  return str
+    return str
 }
 
 export default defineConfig({
