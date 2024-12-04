@@ -25,11 +25,11 @@ members.forEach((username, i) => {
                     if (!fs.existsSync(`${mPath}/${username}/portfolio/${getFNameNoExt(item)}/`)) {
                         fs.mkdirSync(`${mPath}/${username}/portfolio/${getFNameNoExt(item)}/`)
                     }
-                    fs.copySync(`${mPath}/${username}/portfolio/${item}`, `${mPath}/${username}/portfolio/${getFNameNoExt(file)}/${item}`)
+                    fs.copySync(`${mPath}/${username}/portfolio/${item}`, `${mPath}/${username}/portfolio/${getFNameNoExt(item)}/${item}`)
 
                     obj.src = 'info.js'
                     obj = `var data = ${JSON.stringify(obj, null, 4)}\n\nexport default data`
-                    fs.writeFileSync(`${mPath}/${username}/portfolio/${getFNameNoExt(file)}/info.js`)
+                    fs.writeFileSync(`${mPath}/${username}/portfolio/${getFNameNoExt(item)}/info.js`)
                 })
             }
         }
