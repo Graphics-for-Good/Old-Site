@@ -1,0 +1,26 @@
+---
+export interface Props {
+	carouselIndex: number;
+	dataColumns: number;
+	dataId: string;
+}
+
+var { carouselIndex, dataColumns, dataId } = Astro.props as Props;
+
+var forwFunction = `javascript:goBack(this);`
+var backFunction = `javascript:goForw(this);`
+
+---
+<div class="carousel" id={dataId} data-index={carouselIndex} data-columns={dataColumns.toString()} active-item={1}>
+  <a class="arrow" hidden href={`#${dataId}`} onclick={backFunction}>
+    <img src="/assets/arrows/L.svg" class="button" draggable="false" alt={`Move Carousel ${carouselIndex} Backward.`} />
+  </a>
+  <div class="img-container">
+    <div class="imgs">
+      <slot />
+    </div>
+  </div>
+  <a class="arrow" hidden href={`#${dataId}`} onclick={forwFunction}>
+    <img src="/assets/arrows/R.svg" class="button" draggable="false" alt={`Move Carousel ${carouselIndex} Forwards.`} />
+  </a>
+</div>

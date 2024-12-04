@@ -1,0 +1,50 @@
+---
+import '../styles/components/carousel.scss'
+---
+<slot />
+<script is:inline>
+    let carousels = document.querySelectorAll('.carousel')
+    carousels.forEach(function(carousel, i) {
+        var dataI = parseInt(carousel.getAttribute('data-index'))
+        if (!!dataI || dataI === 0) {
+            i = dataI
+        }
+
+        // carousel.querySelectorAll('.arrow').forEach(a => {
+        //     a.removeAttribute('hidden')
+        // })
+    })
+</script>
+<script is:inline>
+    function setImg(carousel, active) {
+        var imgs = carousel.querySelector('.imgs')
+
+        var dataColumns = carousel.getAttribute('data-columns')
+        var size = (imgs.clientWidth + 25) / dataColumns
+
+        var pos = size*(active-1)
+
+        imgs.scrollTo(pos, 0);
+    }
+
+    function goBack(arrow) {
+        var carousel = arrow.parentNode.parentNode
+
+        var active = carousel.getAttribute('active-item')
+        if (active < 1) return
+        carousel.setAttribute('active-item', active-1)
+
+        setImg(carousel, 'back')
+    }
+  
+    function goForw(arrow) {
+        var carousel = arrow.parentNode.parentNode
+        var dataColumns = carousel.getAttribute('data-columns')
+
+        var active = carousel.getAttribute('active-item')
+        if (active > dataColumns) return
+        carousel.setAttribute('active-item', active+1)
+
+        setImg(carousel, 'forw')
+    }
+</script>

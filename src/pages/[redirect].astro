@@ -1,0 +1,88 @@
+---
+import Layout from '../layouts/Layout.astro'
+import '../styles/pages/frame.scss'
+
+var def = {
+    slug: '/not-correct', 
+    dest: '/', 
+}
+
+var redirects = [
+    {
+        slug: '/sign-up', 
+        dest: 'https://go.graphics-for-good.com/Sign-Up', 
+        mode: 'frame', 
+    }, 
+    {
+        slug: '/status', 
+        dest: 'https://go.graphics-for-good.com/Status', 
+    },
+    {
+        slug: '/about', 
+        dest: '/mission', 
+    },
+    {
+        slug: '/RemoveG4GEmailFromDTechGMail', 
+        dest: 'https://scribehow.com/shared/Delete_Gmail_Account_From_Settings__78OV_z6vSX-eRlqEdG1kgA', 
+    },
+]
+
+export function getStaticPaths() {
+    return [
+        {params: {redirect: 'status'}}, 
+        {params: {redirect: 'sign-up'}}, 
+        {params: {redirect: 'about'}}, 
+        {params: {redirect: 'RemoveG4GEmailFromDTechGMail'}}, 
+    ];
+}
+
+var { redirect } = Astro.params;
+
+if (!redirect) redirect = 'not-correct'
+var redirectObj = redirects.filter(r => r.slug.endsWith(redirect))
+
+var rObj = {mode: '', dest: ''} as { slug: string; dest: string; mode: string; } | { slug: string; dest: string; mode?: undefined; }
+if (redirectObj.length > 0) rObj = redirectObj[0]
+else rObj = def
+
+if (!rObj.mode) rObj.mode = 'page'
+
+function getTitle(link) {
+    if (link.startsWith('/')) link = link.slice(1)
+    
+    var nameParts = []
+    if (link.includes('-')) nameParts = link.split('-')
+    else nameParts = [link]
+
+    nameParts.forEach((p, i) => {
+        nameParts[i] = `${p.slice(0, 1).toUpperCase()}${p.slice(1)}`
+    })
+
+    return nameParts.join(' ')
+}
+
+var title = getTitle(rObj.slug)
+
+---
+{rObj.mode === 'page' ? (<html>
+    <head>
+        <meta http-equiv="refresh" content={`0; url=${rObj.dest}`} />        
+        <script url={rObj.dest} is:inline>location.href = document.currentScript.getAttribute('url')</script>
+    </head>
+    <body>
+        Redirecting you to <a href={rObj.dest}>{rObj.dest}</a>.
+    </body>
+</html>) : ''}
+
+<Layout title={title}>
+    <main id="content" class="frame-page">
+        <iframe frameborder="0" src={rObj.dest} class="frame">
+            Please click <a href={rObj.dest}>Here</a> to view the page!
+            <script dest={rObj.dest} is:inline>
+                var dest = document.currentScript.getAttribute('dest')
+                if (!dest) dest = '/'
+                location.replace(dest)
+            </script>
+        </iframe>
+    </main>
+</Layout>

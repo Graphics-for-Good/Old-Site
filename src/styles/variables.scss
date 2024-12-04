@@ -1,0 +1,35 @@
+// scroll animation
+$fade-animation-value: 25%;
+$split-animation-value: 25px;
+
+// site
+$orig-bg-color: #1a4276;
+$bg-color: $orig-bg-color;
+
+$scroll-bar-size: 10px;
+
+$shadow-color: black;
+$shadow-size: 10px;
+$main-shadow: $shadow-color 0 0 $shadow-size;
+
+$font: 'Dekko', system-ui, sans-serif;
+
+$tiny-split-image-parent-min-height: 0px;
+
+:root {
+    --fade-animation-value: #{$fade-animation-value};
+    --split-animation-value: calc((25/var(--dHeight))*100%);
+
+    --orig-bg-color: #{$orig-bg-color};
+    background-color: var(--orig-bg-color);
+  
+    --scroll-bar-size: #{$scroll-bar-size};
+  
+    --shadow-color: #{$shadow-color};
+    --shadow-size: #{$shadow-size};
+    --main-shadow: #{$main-shadow};
+
+    --font: #{$font};
+
+    --tiny-split-image-parent-min-height: #{$tiny-split-image-parent-min-height};
+}

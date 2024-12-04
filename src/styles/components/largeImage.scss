@@ -1,0 +1,87 @@
+html:has(.img-parent > input[type="checkbox"]:checked) {
+    overflow: clip;
+    body {
+        z-index: 1;
+    }
+}
+
+.img-parent {
+    position: relative;
+    overflow: hidden;
+    // display: grid;
+    height: fit-content;
+    &:not(:has(> input[type="checkbox"]:checked)) {
+        * {
+            max-height: var(--max, 100%);
+            max-width: 100%;
+        }
+        // > .img-container {
+        //     box-sizing: border-box;
+        //     max-height: var(--max, 100%);
+        //     max-width: 100%;
+        // }
+    }
+
+    &:has(> input[type="checkbox"]:checked) {
+        inset: 0;
+        &::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-color: var(--bg-color);
+            opacity: 0.9;
+        }
+
+        > .img-container {
+            position: fixed;
+            inset: 0;
+
+            box-sizing: border-box;
+            padding: 2rem;
+            margin: auto;
+
+            border-radius: inherit;
+
+            max-height: 100dvh;
+            max-width: 100dvh;
+
+            display: grid;
+            place-items: center;
+
+            z-index: 2;
+
+            > img {
+                max-height: 100%;
+                max-width: 100%;
+                // background-image: var(--bg);
+                // background-repeat: no-repeat;
+                // background-size: cover;
+                // background-position: center;
+    
+                border-radius: inherit;
+                // box-shadow: inherit;
+            }
+        }
+    }
+
+    > input[type="checkbox"] {
+        position: absolute;
+        bottom: 100%;
+        right: 100%;
+        visibility: hidden;
+        margin: 0;
+        border: none;
+        padding: 0;
+        width: 0;
+        height: 0;
+        background-color: transparent;
+    }
+    > .img-container {
+        height: fit-content;
+        width: fit-content;
+        > img {
+            width: auto;
+            //     pointer-events: none;
+        }
+    }
+}

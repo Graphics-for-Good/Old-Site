@@ -1,0 +1,34 @@
+{
+  "status": "active", 
+  "order": 1, 
+  "name": "Shikha Iyer",
+  "role": {
+    "name": "President and Founder"
+  }, 
+  "pronunciation": false,
+  "email": {
+    "year": 25
+  }, 
+  "pfp": {
+    "g4g": {
+      "sizes": [
+        {
+          "ext": "png",
+          "name": "full"
+        }
+      ]
+    },
+    "google": {
+      "url": "AD5-WCmPo7cOTdQEFaMGPX2MmQ9ThsEGHVVhebGKnqnoww"
+    }
+  },
+  "location": {
+    "city": "Bay Area", 
+    "state": ""
+  }, 
+  "bio": {
+    "w1": "the",
+    "w2": "for",
+    "end": "When she's not working on schoolwork or club prep, she's drawing, reading, or listening to Taylor Swift music on blast."
+  }
+}

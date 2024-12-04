@@ -1,0 +1,24 @@
+{
+  "status": "active", 
+  "name": "Isabelle Anderson",
+  "role": false, 
+  "pronunciation": false, 
+  "email": {
+    "year": 25
+  }, 
+  "pfp": {
+    "google": {
+      "url": "AD5-WCnPy-2RCIBm3xW24x52NHYd1QawRjgezLuj1Pu2",
+      "a": "a-"
+    }
+  },
+  "location": {
+    "city": "Bay Area", 
+    "state": ""
+  }, 
+  "bio": {
+    "w1": "the",
+    "w2": "for",
+    "end": "In her free time, she likes to crochet and browse online shopping sites."
+  }
+}

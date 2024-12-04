@@ -1,0 +1,133 @@
+.carousel {
+    --gap: 25px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    gap: var(--gap);
+
+    .img-container {
+        flex: 1;
+
+        display: grid;
+        place-items: center;
+        overflow-x: hidden;
+    }
+
+    .imgs {
+        box-sizing: border-box;
+        margin: 0;
+        padding: var(--gap);
+        
+        display: grid;
+        gap: calc(var(--gap)*2 + 10px);
+    
+        width: 100%;
+        --pMax: 750px;
+        --max: calc(var(--pMax) - var(--gap)*2 - 10px);
+        max-height: var(--pMax);
+    
+        $grid: repeat(var(--cols, 1), 100%);
+        grid-template-columns: $grid;
+        grid-template-rows: repeat(1, 1fr);
+
+        place-items: center;    
+        
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+
+        list-style: none;
+        isolation: isolate;
+  
+        & > * {
+            scroll-snap-align: center;
+            scroll-snap-stop: always;
+        }
+    
+    }
+
+    @for $i from 0 through 100 {
+        &[data-columns="#{$i}"] {
+            --cols: #{$i};
+        }
+        &[data-rows="#{$i}"] {
+            --rows: #{$i};
+        }
+    }
+
+    @for $i from 0 through 100 {
+        &[active-index="#{$i}"] {
+            --active: #{$i};
+        }
+    }
+
+    & .imgs .img-parent {
+        --time: 250ms;
+        --shadow-size: var(--gap);
+        --shadow-color: var(--orig-bg-color);  
+        
+        max-width: 100%;
+        max-height: 100%;
+
+        // block-size: 100%;
+        // object-fit: cover;
+        
+        
+        background-color: var(--orig-bg-color);
+        box-shadow: var(--shadow-color, var(--orig-bg-color)) 0px 0px var(--shadow-size);
+        
+        border-radius: var(--gap);
+
+        cursor: pointer;
+
+        transition: var(--time) ease-in-out;
+    }
+    
+    & > .arrow {
+        height: 32px;
+        aspect-ratio: 1;
+
+        border-radius: 2px;
+
+        & > img {
+            max-height: 100%;
+            max-width: 100%;
+        }
+        &:is(:focus, :active) {
+            outline: solid black 2px;
+        }
+    }
+  
+    // & > .imgs {
+    //     & .active {
+    //         z-index: 2;
+    //     }
+    //     & :not(.active) {
+    //         z-index: 1;
+    //     }
+  
+    //     & .left {
+    //         border-top-right-radius: 0 !important;
+    //         border-bottom-right-radius: 0 !important;
+
+    //         // box-shadow-right: none;
+    //     }
+  
+    //     & .right {
+    //         border-top-left-radius: 0 !important;
+    //         border-bottom-left-radius: 0 !important;
+
+    //         // box-shadow-left: none;
+    //     }
+    //     & :not(.left, .active, .right) {
+    //         display: none;
+    //     }
+    // }
+  
+    * {
+        -webkit-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
+}

@@ -1,0 +1,108 @@
+---
+import Layout from '../layouts/Layout.astro'
+
+import Split from '../components/split.astro'
+import TinySplit from '../components/tinySplit.astro'
+
+import LargeImage from '../components/largeImage.astro'
+
+import '../styles/pages/projects.scss'
+
+// {
+//   title: 'Treasure Chest Foundation',
+//   description: "They'd like to update it a little to make it more “fresh,” though they like the current logo IDEA and the purple.",
+//   image: {
+//     styles: '--min-parent-height: 175px; --max-height: calc(100% + 50px); --translate-y: -5px',
+//     src: 'treasurechest-foundation.png',
+//     alt: 'The Treasure Chest Foundation Image'
+//   }
+// },
+
+
+var projects = [
+  [
+    {
+      title: 'Amphibian Foundation',
+      description: 'Redesign the <a href="https://amphibianfoundation.org/index.php/pages">Why We Do It Page</a> on <a href="https://amphibianfoundation.org">Their Website</a>.',
+      image: {
+        styles: '--max-height: calc(100% - 5px);',
+        src: 'amphibian-foundation.svg',
+        alt: 'The Amphibian Foundation Logo'
+      }
+    },
+    {
+      title: 'S.A.V.E. Foundation',
+      description: 'Chao from S.A.V.E. wants us to create Instagram posts for #herstory. This is where S.A.V.E posts inspiring stories of strong and brave women.',
+      image: {
+        styles: '',
+        src: 'save-foundation.svg',
+        alt: 'The S.A.V.E. Foundation Logo'
+      }
+    },
+  ],
+  [
+    {
+      title: 'Vanni Aid',
+      description: "We are currently working with Anita from Vanni Aid to re-do their website! Adarsh is working on this.",
+      image: {
+        styles: '',
+        src: 'vanniaid-foundation.jpg',
+        alt: 'The Vanni Aid Logo'
+      }
+    },
+    {
+      title: 'CORA',
+      description: 'Create an informational flyer about CORA with a design targeted at middle school and high school students for their YEA! (Youth Education Advocacy) program.',
+      image: {
+        styles: '',
+        src: 'cora-foundation.png',
+        alt: 'The CORA Logo'
+      }
+    },
+  ],
+  [
+    {
+      title: 'Headstreams',
+      description: 'Description Coming Soon',
+      image: {
+        styles: '',
+        src: 'headstreams.png',
+        alt: 'The Headstreams Logo'
+      }
+    },
+  ]
+]
+---
+<Layout title="Projects">
+  <main id="content" class="projects">
+    {
+      projects.map((row, i) => {
+        return (
+          <>{i !== 0 ? <span class="hHr"></span> : '' }</>
+          <Split>
+            <>{row.length%2 === 1 ? <span class="vHr"></span> : ''}</>
+            {
+              row.map((item, i) => {
+                return (
+                  <>{i !== 0 ? <span class="vHr"></span> : ''}</>
+                  <section>
+                    <h1>{item.title}</h1>
+                    <TinySplit>
+                      <div>
+                        <p set:html={item.description} />
+                      </div>
+                      <div class="img-parent" style={item.image.styles}>
+                        <LargeImage src={`/assets/projects/${item.image.src}`} alt={item.image.alt} draggable={false} />
+                      </div>
+                    </TinySplit>
+                  </section>
+                )
+              })
+            }
+            <>{row.length%2 === 1 ? <span class="vHr"></span> : ''}</>
+          </Split>
+        )
+      })
+    }
+  </main>
+</Layout>

@@ -1,0 +1,57 @@
+---
+import Layout from '../layouts/Layout.astro'
+import Hero from '../components/hero.astro'
+import Split from '../components/split.astro'
+
+import ContactForm from '../components/contactForm.astro'
+
+import Carousels from '../components/carousels.astro'
+import ClubCarousel from '../components/carousels/clubCarousel.astro'
+// import WorkCarousel from '../components/carousels/workCarousel.astro'
+
+import '../styles/pages/index.scss'
+import '../styles/photos.scss'
+---
+<Layout title="Home">
+  <main id="content">
+    <Hero>
+      <div>
+        <h1>Graphics for Good</h1>
+        <h2>Empowering Non-Profits Through the Power of Design!</h1>
+      </div>
+    </Hero>
+    <Split idName="mission" classItems="">
+      <section id="mSection">
+        <h1>Our Mission</h1>
+        <div class="missiontext">
+          <p class="text" centered displayFlex style="--f-direction: column; --gap: 8px;">
+            <span style="text-align: justify;">"Our mission is to help create change in the world through design. We strive to provide free design help for nonprofits that support a wide range of causes."</span>
+            <span displayFlex style="--f-direction: row; justify-content: right;"> - Shikha Iyer, Club Founder</span>
+          </p>
+          <a style="margin-left: auto;" href="/mission" class="btn">Read More</a>
+        </div>
+      </section>
+      <span class="vHr"></span>
+      <section id="contactus">
+        <h2 style="font-size: 2.25rem;">Interested in partnering with us?</h2>
+        <h1>Contact Us</h1>
+        <ContactForm />
+        <p>Have a nonprofit in need? You can also connect with us at <a target="_blank" href="mailto:hello@graphics-for-good.com">hello@graphics-for-good.com!</a></p>
+      </section>
+    </Split>
+    <div class="hHr"></div>
+    <section class="photos">
+      <Carousels>
+        <section id="mwork" align="center">
+          <h1>Member Work</h1>
+          <!-- <WorkCarousel carouselIndex="0" /> -->
+        </section>
+        <div class="hHr" style="--width: 850px;"></div>
+        <section id="cphotos" align="center">
+          <h1>Club Photos</h1>
+          <ClubCarousel carouselIndex="1" />
+        </section>
+      </Carousels>
+    </section>
+  </main>
+</Layout>

@@ -1,0 +1,24 @@
+{
+    "status": "active", 
+    "name": "Zach Mager",
+    "role": false,
+    "pronunciation": false,
+    "email": {
+        "initial": "i", 
+        "year": 28
+    },
+    "pfp": {
+        "g4g": false,
+        "google": {
+            "a": "a-", 
+            "url": "ALV-UjWBqJxbRwaGD-vWHjaCA2XpGWN9MPExnd-kpEIYWOktn65rOv4"
+        }
+    },
+    "location": {
+        "city": "Bay Area", 
+        "state": ""
+    },
+    "bio": {
+        "end": "He likes drawing, watching TV shows, and sewing."
+    }
+}
