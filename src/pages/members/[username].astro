@@ -2,7 +2,7 @@
 import Layout from '../../layouts/Layout.astro'
 
 import Modal from '../../components/modal.astro'
-import LargeImage from '../../components/largeImage.astro'
+// import LargeImage from '../../components/largeImage.astro'
 
 import '../../styles/pages/members.scss'
 import '../../styles/photos.scss'
@@ -54,11 +54,11 @@ pImgs.map(img => {
   if (typeof img === 'object') {
     portfolioImgs.push(img)
   }
-  else fResS.push(getFNameNoExt(img))
+  else fResS.push(getFNameNoExt(img, 1))
 })
 
 portfolioImgs.forEach((img, i) => {
-  var fullRes = fResS.filter(r => getFNameNoExt(r) === getFNameNoExt(img.src))
+  var fullRes = fResS.filter(r => getFNameNoExt(r, 1) === getFNameNoExt(img.src, 1))
   // console.log(getFNameNoExt(img.src))
   if (fullRes.length > 0) {
     img.fullRes = fullRes[0]
