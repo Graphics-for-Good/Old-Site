@@ -18,7 +18,7 @@ members.forEach((username, i) => {
                 var items = fs.readdirSync(`${mPath}/${username}/portfolio/`)
                 items.forEach(item => {
                     var obj = fs.readFileSync(`${mPath}/${username}/portfolio/${item}/info.json`, 'utf8')
-                    obj = `var data = ${JSON.stringify(obj, null, 4)}\n\nexport default data`
+                    obj = `var data = ${obj}\n\nexport default data`
                     fs.writeFileSync(`${mPath}/${username}/portfolio/${item}/info.js`, obj)
                 })
             }
