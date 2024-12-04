@@ -1,6 +1,9 @@
 {
   "status": "active", 
   "name": "Robin Solis-Rodriguez",
+  "role": {
+    "name": "Upcoming Social Media Manager"
+  },
   "pronunciation": false,
   "email": {
     "initial": "m", 
