@@ -19,6 +19,9 @@ members.forEach((username, i) => {
                     portfolio.push({
                         file: `${username}-${i}`
                     })
+                    if (!fs.existsSync(`${directoryPath}/${username}/renamedPortfolio/`)) {
+                        fs.mkdirSync(`${directoryPath}/${username}/renamedPortfolio/`)
+                    }
                     if (fs.existsSync(`${directoryPath}/${username}/renamedPortfolio/${username}-${i}`)) {
                         fs.unlinkSync(`${directoryPath}/${username}/renamedPortfolio/${username}-${i}`)
                     }
