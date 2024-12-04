@@ -50,6 +50,7 @@ var fResS = []
 
 pImgs.map(img => {
   img = img.default
+  if (img.src === 'info.js') return
   if (typeof img === 'object') {
     portfolioImgs.push(img)
   }
