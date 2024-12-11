@@ -15,25 +15,44 @@ f2.forEach(f3 => {
         var f6 = fs.readdirSync(`${f1}/${f3}/${f5}`)
         
         f6.forEach(f7 => {
-            if (f5 === 'renamedPortfolio') {
-                fs.unlinkSync(`${f1}/${f3}/${f5}/${f7}`)
+            if (fs.lstatSync(`${f1}/${f3}/${f5}/${f7}`).isDirectory()) return
+            console.log(`${f2}/${f7}`)
+            if (!fs.existsSync(`${f1}/${f3}/${f5}/${f7}`)) fs.mkdirSync(`${f1}/${f3}/${f5}/${f7}`)
+            var obj = {
+                username: f3, 
+                file: f7, 
+                src: 'info.js', 
             }
-            function one() {
-                if (!fs.lstatSync(`${f1}/${f3}/${f5}/${f7}`).isDirectory()) return
-                var f8 = fs.readdirSync(`${f1}/${f3}/${f5}/${f7}`)
-                f8.forEach(f9 => {
-                    if (f9 === 'info.js') {
-                        var content = fs.readFileSync(`${f1}/${f3}/${f5}/${f7}/${f9}`, 'utf8')
-                        content = content.slice(11, -21)
-                        fs.writeFileSync(`${f1}/${f3}/${f5}/${f7}/info.json`, content)
-                        fs.unlinkSync(`${f1}/${f3}/${f5}/${f7}/${f9}`)
-                    }
-                })
-            }
-        })
+            var content = JSON.stringify(obj, null, 4)
 
-        if (f5 === 'renamedPortfolio') {
-            fs.rmdirSync(`${f1}/${f3}/${f5}`)
-        }
+            if (!getFExt(f5) === '.pdf') {
+                fs.writeFileSync(`${f1}/${f3}/${f5}/${getFNameNoExt(f7)}/info.json`, content)
+            }
+
+            fs.moveSync(`${f1}/${f3}/${f5}/${f7}`, `${f1}/${f3}/${f5}/${getFNameNoExt(f7)}/${f7}`)
+        })
     })
 })
+
+function getFName(str) {
+    if (str.includes('/')) str = str.split('/').slice(-1)[0]
+    return str
+}
+
+function getFNameNoExt(str) {
+    if (str.includes('/')) str = str.split('/').slice(-1)[0]
+    str = str.slice(0, -1*getFExt(str).length)
+    return str
+}
+
+function getFExt(str) {
+    str = getFName(str)
+    if (str.includes('.')) {
+        str = str.split('.')
+        str = str.slice(-1)
+        str = str.join('.')
+        str = `.${str}`
+    }
+    return str
+}
+
