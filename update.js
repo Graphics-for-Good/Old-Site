@@ -1,5 +1,4 @@
 var fs = require('fs-extra')
-const { info } = require('sass')
 
 var f1 = './members'
 var f2 = fs.readdirSync(f1)
@@ -16,8 +15,8 @@ f2.forEach(f3 => {
         
         f6.forEach(f7 => {
             if (fs.lstatSync(`${f1}/${f3}/${f5}/${f7}`).isDirectory()) return
-            console.log(`${f2}/${f7}`)
-            if (!fs.existsSync(`${f1}/${f3}/${f5}/${f7}`)) fs.mkdirSync(`${f1}/${f3}/${f5}/${f7}`)
+            console.log(`${f3}/${f7}`)
+            if (!fs.existsSync(`${f1}/${f3}/${f5}/${getFNameNoExt(f7)}`)) fs.mkdirSync(`${f1}/${f3}/${f5}/${getFNameNoExt(f7)}`)
             var obj = {
                 username: f3, 
                 file: f7, 
@@ -25,7 +24,7 @@ f2.forEach(f3 => {
             }
             var content = JSON.stringify(obj, null, 4)
 
-            if (!getFExt(f5) === '.pdf') {
+            if (getFExt(f7) !== '.pdf') {
                 fs.writeFileSync(`${f1}/${f3}/${f5}/${getFNameNoExt(f7)}/info.json`, content)
             }
 
@@ -47,6 +46,7 @@ function getFNameNoExt(str) {
 
 function getFExt(str) {
     str = getFName(str)
+    console.log(str)
     if (str.includes('.')) {
         str = str.split('.')
         str = str.slice(-1)
