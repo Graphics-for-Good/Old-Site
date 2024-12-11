@@ -46,7 +46,6 @@ function getFNameNoExt(str) {
 
 function getFExt(str) {
     str = getFName(str)
-    console.log(str)
     if (str.includes('.')) {
         str = str.split('.')
         str = str.slice(-1)
