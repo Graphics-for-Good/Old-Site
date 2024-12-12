@@ -4,17 +4,21 @@ import LargeImage from '../largeImage.astro'
 
 const { carouselIndex } = Astro.props
 
-var images = []
-var fullRes = []
+const imags = import.meta.glob(`../../../members/*/portfolio/*/info.js`, {eager:true})
 
-const imgs = import.meta.glob(`../../../members/*/portfolio/*/info.js`, {eager:true})
-
-for (const path in imgs) {
-  imgs.push(imgs[path].default as any)
+var imgs = []
+for (const path in imags) {
+  imgs.push(imgs[path] as any)
 }
+
+imgs.forEach((img, i) => {
+    if (!img) return
+    if (img.default) images[i] = images.default
+})
 
 var images = []
 imgs.forEach(img => {
+    if (!img) return
     var alreadyHas = images.filter(i => i.file === img.file).length > 0
     if (!alreadyHas) images.push(img)
 })
