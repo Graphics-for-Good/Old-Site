@@ -2,29 +2,42 @@ import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 import path from 'path';
 import fs from 'fs-extra';
+import { info } from 'console';
 
 const siteUrl = 'https://graphics-for-good.com';
 
 const mPath = path.join('./', 'members');
-const cPath = path.join('./', 'content');
+const pMPath = path.join('./', 'public', '/', 'assets', '/', 'members');
 const members = fs.readdirSync(mPath);
+const pMembers = fs.readdirSync(pMPath);
+
+pMembers.forEach((username, i) => {
+    var isDir = fs.lstatSync(`${pMPath}/${username}`).isDirectory()
+    if (isDir) {
+        if (fs.existsSync(`${pMPath}/${username}/portfolio/`)) {
+            if (fs.lstatSync(`${pMPath}/${username}/portfolio/`).isDirectory()) {
+                var items = fs.readdirSync(`${pMPath}/${username}/portfolio/`)
+                items.forEach(item => {
+                    if (!fs.existsSync(`${mPath}/${username}/portfolio/${getFNameNoExt(item)}/info.json`)) {
+                        var obj = {
+                            username: username, 
+                            file: item, 
+                            src: 'info.js'
+                        }
+                        fs.writeFileSync(`${mPath}/${username}/portfolio/${getFNameNoExt(item)}/info.json`, JSON.stringify(obj, null, 4))
+                    }
+                    var obj = fs.readFileSync(`${mPath}/${username}/portfolio/${getFNameNoExt(item)}/info.json`, 'utf8')
+                    obj = `var data = ${obj}\n\nexport default data`
+                    fs.writeFileSync(`${mPath}/${username}/portfolio/${getFNameNoExt(item)}/info.js`, obj)
+                })
+            }
+        }
+    }
+});
 
 members.forEach((username, i) => {
     var isDir = fs.lstatSync(`${mPath}/${username}`).isDirectory()
     if (isDir) {
-        var portfolio = []
-        if (fs.existsSync(`${mPath}/${username}/portfolio/`)) {
-            if (fs.lstatSync(`${mPath}/${username}/portfolio/`).isDirectory()) {
-                var items = fs.readdirSync(`${mPath}/${username}/portfolio/`)
-                items.forEach(item => {
-                    var obj = fs.readFileSync(`${mPath}/${username}/portfolio/${item}/info.json`, 'utf8')
-                    obj = `var data = ${obj}\n\nexport default data`
-                    fs.writeFileSync(`${mPath}/${username}/portfolio/${item}/info.js`, obj)
-                })
-            }
-        }
-
-
         var info = `${mPath}/${username}/info.json`
         if (fs.existsSync(info)) {
             info = fs.readFileSync(info, 'utf-8')
@@ -32,7 +45,6 @@ members.forEach((username, i) => {
                 if (info.startsWith('{') && info.endsWith('}')) {
                     info = JSON.parse(info)
                     info.username = username
-                    info.portfolio = portfolio
                     
                     info = JSON.stringify(info, null, 2)
                     info = `var data = ${info}\n\nexport default data`

@@ -7,19 +7,18 @@ const { carouselIndex } = Astro.props
 var images = []
 var fullRes = []
 
-var imgs = []// await Astro.glob('../../../members/*/portfolio/*/*')
+const imgs = import.meta.glob(`../../../members/*/portfolio/*/info.js`, {eager:true})
 
+const imgs = []
+
+for (const path in imgs) {
+  imgs.push(imgs[path].default as any)
+}
+
+var images = []
 imgs.forEach(img => {
-    img = img.default
-    
-    if (typeof img === 'object') {
-        if (img.src === 'info.js') return
-        img.username = img.username
-
-        var alreadyHas = images.filter(i => getFNameNoExt(i.src) === getFNameNoExt(img.src))
-        if (!alreadyHas) images.push(img)
-    }
-    else fullRes.push(getFNameNoExt(img))
+    var alreadyHas = images.filter(i => i.file === img.file).length > 0
+    if (!alreadyHas) images.push(img)
 })
 
 images.forEach((img, i) => {

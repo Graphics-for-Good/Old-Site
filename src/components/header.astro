@@ -34,6 +34,7 @@ function getLink(link) {
   var hasHome = false
   
   var fileName = lPath
+  if (!fileName) return
   if (fileName.startsWith('/')) fileName = fileName.slice(1)
   if (fileName === '' && !hasHome) {
     fileName = 'home'
