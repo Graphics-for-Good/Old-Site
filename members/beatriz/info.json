@@ -1,7 +1,9 @@
 {
   "status": "active", 
   "name": "Beatriz Meneses",
-  "pronunciation": false,
+  "pronunciation": {
+    "name": "Next Internal President"
+  },
   "email": {
     "year": 27
   }, 

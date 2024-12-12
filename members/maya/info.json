@@ -1,7 +1,9 @@
 {
     "status": "active", 
     "name": "Maya Koren",
-    "role": false,
+    "role": {
+        "name": "Next Webmaster"
+    },
     "pronunciation": false,
     "email": {
         "year": 28
