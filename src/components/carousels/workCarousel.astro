@@ -13,7 +13,7 @@ for (const path in imags) {
 
 imgs.forEach((img, i) => {
     if (!img) return
-    if (img.default) images[i] = images.default
+    if (img.default) images[i] = img.default
 })
 
 var images = []
