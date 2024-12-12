@@ -9,8 +9,6 @@ var fullRes = []
 
 const imgs = import.meta.glob(`../../../members/*/portfolio/*/info.js`, {eager:true})
 
-const imgs = []
-
 for (const path in imgs) {
   imgs.push(imgs[path].default as any)
 }
