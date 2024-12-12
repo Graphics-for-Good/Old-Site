@@ -1,4 +1,4 @@
-[![Netlify + Astro](https://user-images.githubusercontent.com/43764894/223559085-8ff69d2f-4247-427f-a3a6-d2036b00082a.png)](https://ntl.fyi/3LZGn73)
+[Netlify + Astro](https://ntl.fyi/3LZGn73)
 
 # Astro Quickstart Template   
 
@@ -30,7 +30,7 @@ Love reading, here's blog post: https://netlify.app/blog/deploy-your-astro-proje
 
 Click this button and it will help you create a new repo, create a new Netlify project, and deploy!
 
-[![Deploy to Netlify Button](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/netlify-templates/astro-quickstart)
+[Deploy to Netlify Button](https://app.netlify.com/start/deploy?repository=https://github.com/netlify-templates/astro-quickstart)
 
 ## Regular Setup
 
