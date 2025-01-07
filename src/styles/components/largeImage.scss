@@ -10,6 +10,9 @@ html:has(.img-parent > input[type="checkbox"]:checked) {
     overflow: hidden;
     // display: grid;
     height: fit-content;
+
+    cursor: pointer;
+
     &:not(:has(> input[type="checkbox"]:checked)) {
         * {
             max-height: var(--max, 100%);
