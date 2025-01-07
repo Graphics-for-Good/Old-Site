@@ -10,11 +10,11 @@ export interface Props {
     fullRes: URL;
 }
 
-const { id, src, alt, orientation, draggable, fullRes } = Astro.props as Props;
+const { id, classes, src, alt, orientation, draggable, fullRes } = Astro.props as Props;
 
 import '../styles/components/largeImage.scss'
 ---
-<label class="img-parent">
+<label class=`img-parent ${classes}`>
     <input type="checkbox" />
     <div class="img-container">
         <!-- <pre>{fullRes}</pre> -->

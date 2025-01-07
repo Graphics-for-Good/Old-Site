@@ -1,4 +1,6 @@
 ---
+import WorkCarouselItems from './workCarouselItems.astro'
+
 import Carousel from '../carousel.astro'
 import LargeImage from '../largeImage.astro'
 
@@ -11,47 +13,8 @@ for (const path in imags) {
     images.push(imags[path].default as any)
 }
 
-function getFName(str) {
-    if (str.includes('/')) str = str.split('/').slice(-1)[0]
-    return str
-}
-
-function getFNameNoExt(str) {
-    if (str.includes('/')) str = str.split('/').slice(-1)[0]
-    str = str.slice(0, -1*getFExt(str, 2).length)
-    return str
-}
-
-function getFExt(str, level=1) {
-    str = getFName(str)
-    if (level > 0) level *= -1
-    if (str.includes('.')) {
-        str = str.split('.')
-        switch (level) {
-            case 0: 
-                break
-            default: 
-                str = str.slice(level)
-                break
-        }
-        str = str.join('.')
-    }
-    return str
-}
-
-function toProper(user) {
-    user = `${user.slice(0, 1).toUpperCase()}${user.slice(1)}`
-    return user
-}
-
 var dId = 'workCarousel'
 ---
 <Carousel carouselIndex={carouselIndex} dataColumns={images.length} dataId={dId}>
-    {
-        (
-            images.map((img, i) => {
-                return <LargeImage id={`${dId}-${i}`} src={`/assets/members/${img.username}/portfolio/${img.file}`} alt={`${getFNameNoExt(img.file)} by ${toProper(img.username)}`} draggable={false} fullRes={img.fullRes} />
-            })
-        )   
-    }
+    <WorkCarouselItems carouselIndex={carouselIndex} dataColumns={images.length} dataId={dId} />
 </Carousel>

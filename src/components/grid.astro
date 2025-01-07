@@ -1,0 +1,9 @@
+---
+import '../styles/components/grid.scss'
+
+var { min, max } = Astro.props
+
+---
+<section class="grid" style={`--min: ${min || 'unset'}; --max: ${max || 'unset'}`}>
+    <slot />
+</section>

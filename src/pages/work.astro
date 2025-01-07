@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro'
+import Grid from '../components/Grid.astro'
 
 import Carousels from '../components/carousels.astro'
 import WorkCarousel from '../components/carousels/workCarousel.astro'
@@ -12,7 +13,9 @@ import '../styles/photos.scss'
       <Carousels>
         <section>
           <h1>Member Work</h1>
-          <WorkCarousel />
+          <Grid>
+            <WorkCarouselItems />
+          </Grid>
         </section>
       </Carousels>
     </section>
