@@ -1,4 +1,4 @@
-$gap: 2rem;
+$gap: 1rem;
 $padding: 1rem;
 $min: 12rem;
 
@@ -19,7 +19,7 @@ $min: 12rem;
 
 .grid:not(.lite) {
     display: grid;
-    gap: $gap;
+    gap: var(--gap, $gap);
 
     grid-template-columns: repeat(auto-fit, minmax(var(--min, $min), var(--max, 1fr))); /* Old Browsers (no "min()") */
     grid-template-columns: repeat(auto-fit, minmax(min(var(--min, $min), var(--max, 100%)), var(--max, 1fr))); /* New Browser (yes "min()")*/
