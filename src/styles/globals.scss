@@ -226,13 +226,13 @@ main {
 }
 
 section {
-  &:not(.split, .split &, .projects & &, .error &) {
+  &:not(.split, .split &, .grid, .projects &, .error &) {
     display: flex;
     // justify-content: center;
     align-items: center;
     flex-direction: column;
   }
-  &:not(.hero, .split, .photos, .enroll__beta, .error &, .welcome &) {
+  &:not(.hero, .split, .grid, .photos, .enroll__beta, .error &, .welcome &) {
     box-shadow: var(--main-shadow);
     border-radius: 25px;
     transition: 500ms ease-in-out;
