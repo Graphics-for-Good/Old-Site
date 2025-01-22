@@ -24,6 +24,8 @@ pMembers.forEach((username, i) => {
                             file: item, 
                             src: 'info.js'
                         }
+                        if (!fs.existsSync(`${mPath}/${username}/portfolio`)) fs.mkdirSync(`${mPath}/${username}/portfolio`)
+                        if (!fs.existsSync(`${mPath}/${username}/portfolio/${getFNameNoExt(item)}`)) fs.mkdirSync(`${mPath}/${username}/portfolio/${getFNameNoExt(item)}`)
                         fs.writeFileSync(`${mPath}/${username}/portfolio/${getFNameNoExt(item)}/info.json`, JSON.stringify(obj, null, 4))
                     }
                     var obj = fs.readFileSync(`${mPath}/${username}/portfolio/${getFNameNoExt(item)}/info.json`, 'utf8')
