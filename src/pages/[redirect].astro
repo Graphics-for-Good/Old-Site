@@ -27,7 +27,7 @@ export async function getStaticPaths() {
             dest: 'https://scribehow.com/shared/Delete_Gmail_Account_From_Settings__78OV_z6vSX-eRlqEdG1kgA', 
         },
     ]
-    return pages.map(({ slug, dest }) => {
+    return redirects.map(({ slug, dest }) => {
         return {
             params: {redirect: slug}
         };
