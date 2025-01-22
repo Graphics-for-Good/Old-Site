@@ -34,15 +34,6 @@ export async function getStaticPaths() {
     });
 }
 
-export function getStaticPaths() {
-    return [
-        {params: {redirect: 'status'}}, 
-        {params: {redirect: 'sign-up'}}, 
-        {params: {redirect: 'about'}}, 
-        {params: {redirect: 'RemoveG4GEmailFromDTechGMail'}}, 
-    ];
-}
-
 var { redirect } = Astro.params;
 
 if (!redirect) redirect = 'not-correct'
