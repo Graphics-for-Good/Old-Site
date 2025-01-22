@@ -18,17 +18,17 @@ pMembers.forEach((username, i) => {
             if (fs.lstatSync(`${pMPath}/${username}/portfolio/`).isDirectory()) {
                 var items = fs.readdirSync(`${pMPath}/${username}/portfolio/`)
                 items.forEach(item => {
-                    if (!fs.existsSync(`${pMPath}/${username}/portfolio/${getFNameNoExt(item)}/info.json`)) {
+                    if (!fs.existsSync(`${mPath}/${username}/portfolio/${getFNameNoExt(item)}/info.json`)) {
                         var obj = {
                             username: username, 
                             file: item, 
                             src: 'info.js'
                         }
-                        fs.writeFileSync(`${pMPath}/${username}/portfolio/${getFNameNoExt(item)}/info.json`, JSON.stringify(obj, null, 4))
+                        fs.writeFileSync(`${mPath}/${username}/portfolio/${getFNameNoExt(item)}/info.json`, JSON.stringify(obj, null, 4))
                     }
-                    var obj = fs.readFileSync(`${pMPath}/${username}/portfolio/${getFNameNoExt(item)}/info.json`, 'utf8')
+                    var obj = fs.readFileSync(`${mPath}/${username}/portfolio/${getFNameNoExt(item)}/info.json`, 'utf8')
                     obj = `var data = ${obj}\n\nexport default data`
-                    fs.writeFileSync(`${pMPath}/${username}/portfolio/${getFNameNoExt(item)}/info.js`, obj)
+                    fs.writeFileSync(`${mPath}/${username}/portfolio/${getFNameNoExt(item)}/info.js`, obj)
                 })
             }
         }
