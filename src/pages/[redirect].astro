@@ -74,7 +74,7 @@ var title = getTitle(rObj.slug)
 {rObj.mode === 'page' ? (<html>
     <head>
         <meta http-equiv="refresh" content={`0; url=${rObj.dest}`} />        
-        <script url={rObj.dest} is:inline>location.href = document.currentScript.getAttribute('url')</script>
+        <script url={rObj.dest} is:inline>location.replace(document.currentScript.getAttribute('url'))</script>
     </head>
     <body>
         Redirecting you to <a href={rObj.dest}>{rObj.dest}</a>.
