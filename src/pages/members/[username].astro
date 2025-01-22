@@ -52,41 +52,18 @@ for (const path in imgs) {
   pImgs.push(imgs[path].default as any)
 }
 
-export function getStaticPaths() {
-  return [
-    {params: {username: 'adarsh'}}, 
-    {params: {username: 'amelia'}}, 
-    {params: {username: 'arianna'}}, 
-    {params: {username: 'beatriz'}}, 
-    {params: {username: 'bridget'}}, 
-    {params: {username: 'cedrus'}}, 
-    {params: {username: 'hanlin'}}, 
-    {params: {username: 'isabelle'}}, 
-    {params: {username: 'jeremy'}}, 
-    {params: {username: 'lorelai'}}, 
-    {params: {username: 'luce'}}, 
-    {params: {username: 'mia'}}, 
-    {params: {username: 'maya'}}, 
-    {params: {username: 'miriam'}}, 
-    {params: {username: 'parker'}}, 
-    {params: {username: 'robin'}}, 
-    {params: {username: 'sayuri'}}, 
-    {params: {username: 'shikha'}}, 
-    {params: {username: 'tyler'}}, 
-    {params: {username: 'zach'}}, 
+var userDatas = await Astro.glob('../../../members/*/info.js')
 
-    {params: {username: '_default'}},
-    {params: {username: 'juhi'}}, 
-    {params: {username: 'rien'}}, 
-    {params: {username: 'sam'}}, 
-    {params: {username: 'samantha'}}, 
-  ];
+export async function getStaticPaths() {
+  return redirects.map(({ username, name }) => {
+    return {
+      params: {username: username}
+    };
+  });
 }
 
 var { username } = Astro.params;
 if (!username) username = '_admin'
-
-var userDatas = /*[] //*/await Astro.glob('../../../members/*/info.js')
 
 var userData = userDatas.find(data => data.default.username === username)
 
