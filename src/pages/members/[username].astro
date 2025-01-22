@@ -55,7 +55,7 @@ for (const path in imgs) {
 var userDatas = await Astro.glob('../../../members/*/info.js')
 
 export async function getStaticPaths() {
-  return redirects.map(({ username, name }) => {
+  return userDatas.map(({ username, name }) => {
     return {
       params: {username: username}
     };
