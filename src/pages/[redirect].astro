@@ -7,25 +7,32 @@ var def = {
     dest: '/', 
 }
 
-var redirects = [
-    {
-        slug: '/sign-up', 
-        dest: 'https://go.graphics-for-good.com/Sign-Up', 
-        mode: 'frame', 
-    }, 
-    {
-        slug: '/status', 
-        dest: 'https://go.graphics-for-good.com/Status', 
-    },
-    {
-        slug: '/about', 
-        dest: '/mission', 
-    },
-    {
-        slug: '/RemoveG4GEmailFromDTechGMail', 
-        dest: 'https://scribehow.com/shared/Delete_Gmail_Account_From_Settings__78OV_z6vSX-eRlqEdG1kgA', 
-    },
-]
+export async function getStaticPaths() {
+    var redirects = [
+        {
+            slug: '/sign-up', 
+            dest: 'https://go.graphics-for-good.com/Sign-Up', 
+            mode: 'frame', 
+        }, 
+        {
+            slug: '/status', 
+            dest: 'https://www.whatsmydns.net/#A/graphics-for-good.com', 
+        },
+        {
+            slug: '/about', 
+            dest: '/mission', 
+        },
+        {
+            slug: '/RemoveG4GEmailFromDTechGMail', 
+            dest: 'https://scribehow.com/shared/Delete_Gmail_Account_From_Settings__78OV_z6vSX-eRlqEdG1kgA', 
+        },
+    ]
+    return pages.map(({ slug, dest }) => {
+        return {
+            params: {redirect: slug}
+        };
+    });
+}
 
 export function getStaticPaths() {
     return [
