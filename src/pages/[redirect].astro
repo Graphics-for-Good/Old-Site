@@ -29,8 +29,8 @@ export async function getStaticPaths() {
     ]
     return redirects.map(redirect => {
         return {
-            params: {redirect: redirect.slug}
-            props: {redirect}
+            params: {redirect: redirect.slug},
+            props: {redirect},
         };
     });
 }
