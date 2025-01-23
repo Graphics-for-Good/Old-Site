@@ -54,15 +54,10 @@ for (const path in imgs) {
 
 export async function getStaticPaths() {
   var userDatas = await Astro.glob('../../../members/*/info.js')
-  var arr = []
 
-  userDatas.map(data => {
-    arr.push(
-      {params: {username: data.username}}
-    );
+  return userDatas.map(data => {
+    return {params: {username: data.username}}
   });
-
-  return arr
 }
 
 var { username } = Astro.params;
