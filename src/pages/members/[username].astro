@@ -57,7 +57,7 @@ export async function getStaticPaths() {
   var arr = []
 
   userDatas.map(data => {
-    obj.push(
+    arr.push(
       {params: {username: data.username}}
     );
   });
