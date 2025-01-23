@@ -1,3 +1,4 @@
+// Photos section styles
 section.photos {
     flex: 1;
     width: 100%;
@@ -25,6 +26,7 @@ section.photos {
     }
 }
 
+// Media query for small screens
 @media (width < 750px) {
     section.photos {
         & > section {
@@ -33,6 +35,7 @@ section.photos {
     }
 }
 
+// Photos list styles
 ul:is(#photos, .photos) {
     --cols: 3;
     --gap: 25px;

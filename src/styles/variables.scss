@@ -1,21 +1,26 @@
-// scroll animation
+// Scroll animation variables
 $fade-animation-value: 25%;
 $split-animation-value: 25px;
 
-// site
+// Site colors
 $orig-bg-color: #1a4276;
 $bg-color: $orig-bg-color;
 
+// Scroll bar size
 $scroll-bar-size: 10px;
 
+// Shadow properties
 $shadow-color: black;
 $shadow-size: 10px;
 $main-shadow: $shadow-color 0 0 $shadow-size;
 
+// Font settings
 $font: 'Dekko', system-ui, sans-serif;
 
+// Minimum height for tiny split image parent
 $tiny-split-image-parent-min-height: 0px;
 
+// CSS variables for use in styles
 :root {
     --fade-animation-value: #{$fade-animation-value};
     --split-animation-value: calc((25/var(--dHeight))*100%);

@@ -1,415 +1,406 @@
+// Import variables and fonts
 @use 'variables.scss';
-
-// Import Fonts
 @import url('https://fonts.googleapis.com/css2?family=Dekko&display=swap');
 @import url('https://fonts.cdnfonts.com/css/brittany-signature');
 @import url('https://fonts.cdnfonts.com/css/buffalo');
 
+// Define custom font-face
 @font-face {
-  font-family: 'bakeriebold';
-  font-style: normal;
-  font-weight: 400;
-  src: local('bakeriebold'), url('/assets/fonts/bakeriebold/bakeriesmooth-bold.otf') format('otf');
+    font-family: 'bakeriebold';
+    font-style: normal;
+    font-weight: 400;
+    src: local('bakeriebold'), url('/assets/fonts/bakeriebold/bakeriesmooth-bold.otf') format('otf');
 }
 
+// Set root styles
 :root {
-  background-color: var(--orig-bg-color);
-  color: white;
-
-  font-family: var(--font);
+    background-color: var(--orig-bg-color);
+    color: white;
+    font-family: var(--font);
 }
 
-// Custom Scrollbar
+// Custom Scrollbar styles
 ::-webkit-scrollbar {
-  width: var(--scroll-bar-size);
-  height: var(--scroll-bar-size);
-
-  // border-radius: 25px;
-
-  transition: all 500ms ease-in-out;
+    width: var(--scroll-bar-size);
+    height: var(--scroll-bar-size);
+    transition: all 500ms ease-in-out;
 }
- 
-// Track
+
+// Scrollbar track
 ::-webkit-scrollbar-track {
-  background: #f1f1f1;
+    background: #f1f1f1;
 }
 
-// Handle
+// Scrollbar thumb
 ::-webkit-scrollbar-thumb {
-  background: #999; 
-
-  border-radius: 25px;
-
-  transition: background-color 500ms ease-in;
+    background: #999; 
+    border-radius: 25px;
+    transition: background-color 500ms ease-in;
 }
 
-// Handle on hover
+// Scrollbar thumb hover
 ::-webkit-scrollbar-thumb:hover {
-  background-color: #bbb;
-  transition: background-color 500ms ease-out;
+    background-color: #bbb;
+    transition: background-color 500ms ease-out;
 }
 
+// HTML element styles
 html {
-  min-width: calc(100dvw - var(--scroll-bar-width));
-  min-height: 100%;
-  scroll-behavior: smooth;
+    min-width: calc(100dvw - var(--scroll-bar-width));
+    min-height: 100%;
+    scroll-behavior: smooth;
 }
 
+// Full height styles
 .fullHeight:not(body > *.fullHeight, .hero.fullHeight) {
-  height: 100% !important;
+    height: 100% !important;
 }
 body.fullHeight {
-  display: flex;
+    display: flex;
 }
 
+// Body styles
 body {
-  display: flex;
-  flex-direction: column;
-  margin: 0;//10;
-  width: 100%;
-  min-height: 100%;
-  // display: flex;
-  // flex-direction: column;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    width: 100%;
+    min-height: 100%;
 }
 
-[bBorder] {
-  border-bottom: solid 2px var(--b-color, white);
+// Border bottom styles
+[bBorder], .bBorder {
+    border-bottom: solid 2px var(--b-color, white);
 }
 
-[displayFlex] {
-  display: flex;
-  flex-direction: var(--f-direction);
-  gap: var(--gap)
+// Flex display styles
+[displayFlex], .displayFlex {
+    display: flex;
+    flex-direction: var(--f-direction);
+    gap: var(--gap);
 }
 
+// Input, textarea, and select styles
 input, textarea, select {
-  font-family: inherit;
+    font-family: inherit;
 }
 
+// Vertical and horizontal line styles
 .vHr {
-  background-color: white;
-
-  width: 2px;
-  height: var(--height);
-  border-radius: 25px;
-}
-
-.hHr {
-  background-color: var(--b-color, white);
-
-  display: block;
-  margin: var(--marg, 0);
-  width: var(--width, 100%);
-  height: 2px;
-  border-radius: 25px;
-}
-
-h1, h2, h3, h4, h5, h6 {
-  --font: 'Dekko', sans-serif;
-  line-height: 100%;
-}
-
-.gradient {
-  // For browsers that do not support gradients
-  background-color: transparent;
-
-  height: 10px;
-  width: 100%;
-  content: '';
-  --bg: linear-gradient(var(--grad-start, var(--orig-bg-color)), var(--grad-end, #6c78e5));
-}
-
-button, [type="submit"], [type="button"] {
-  margin: inherit;
-  padding: inherit;
-  border: inherit;
-
-  font-family: inherit;
-  font-size: inherit;
-  font-weight: inherit;
-}
-
-.btn, button, [type="submit"], [type="button"] {
-  // min-height: 30px;
-  // max-height: 50px;
-
-  text-decoration: none;
-  
-  border: 1px solid var(--border-color);
-  border-radius: 99rem;
-
-  padding: 0.75rem 2rem;
-  box-shadow: 0px 3px 29px 0px rgba(0, 0, 0, 0.06);
-
-  &[transition] {
-    transition: 0.25s ease-in-out;
-  }
-
-  display: flex;
-  text-align: center;
-  justify-content: center;
-  align-items: center;
-
-  &:not(.primary) {
     background-color: white;
-    --border-color: black;
-    color: black;
-
-    &:is(:hover, :focus-visible) {
-      background-color: black;
-      --border-color: white;
-      color: white;
-    }
-  }
-  &.primary {
-    background-color: black;
-    --border-color: white;
-    color: white;
-
-    &:is(:hover, :focus-visible) {
-      background-color: white;
-      --border-color: black;  
-      color: black;
-    }
-  }
+    width: 2px;
+    height: var(--height);
+    border-radius: 25px;
+}
+.hHr {
+    background-color: var(--b-color, white);
+    display: block;
+    margin: var(--marg, 0);
+    width: var(--width, 100%);
+    height: 2px;
+    border-radius: 25px;
 }
 
-.missiontext {
-background-color: white;
-  margin: 25px;
-  width: -moz-fit-content;
-  width: fit-content;
+// Heading styles
+h1, h2, h3, h4, h5, h6 {
+    --font: 'Dekko', sans-serif;
+    line-height: 100%;
+}
 
-  & > .text  {
-    text-align: justify;
-    max-width: 500px;
-  }
+// Gradient background styles
+.gradient {
+    background-color: transparent;
+    height: 10px;
+    width: 100%;
+    content: '';
+    --bg: linear-gradient(var(--grad-start, var(--orig-bg-color)), var(--grad-end, #6c78e5));
+}
 
-  &:not(section#mission section &) {
+// Button styles
+button, [type="submit"], [type="button"] {
+    margin: inherit;
+    padding: inherit;
+    border: inherit;
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+}
+
+// Button and submit styles
+.btn, button, [type="submit"], [type="button"] {
+    text-decoration: none;
+    border: 1px solid var(--border-color);
+    border-radius: 99rem;
+    padding: 0.75rem 2rem;
+    box-shadow: 0px 3px 29px 0px rgba(0, 0, 0, 0.06);
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 25px;
-    padding: 50px;
-    min-width: 500px;
-    width: calc(500px - 150px);
     text-align: center;
-  }
-}
-
-.textParent {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.text {
-  margin: 0;
-}
-
-main {
-  &:not(.profile) h2 {
-    text-transform: uppercase;
-    font-weight: 400;
-    font-size: 2.5rem;
-  }
-  &.profile {
-    & section {
-      box-shadow: var(--main-shadow);
-      border-radius: 25px;
-      transition: 500ms ease-in-out;
-      &:hover, &:is(:focus-within, :has(:focus-visible)) {
-        border-radius: 10px;
-      }
-    }
-  }
-}
-
-section {
-  &:not(.split, .split &, .grid, .projects &, .error &) {
-    display: flex;
-    // justify-content: center;
+    justify-content: center;
     align-items: center;
+
+    &[transition] {
+        transition: 0.25s ease-in-out;
+    }
+
+    &:not(.primary) {
+        background-color: white;
+        --border-color: black;
+        color: black;
+
+        &:is(:hover, :focus-visible) {
+            background-color: black;
+            --border-color: white;
+            color: white;
+        }
+    }
+    &.primary {
+        background-color: black;
+        --border-color: white;
+        color: white;
+
+        &:is(:hover, :focus-visible) {
+            background-color: white;
+            --border-color: black;    
+            color: black;
+        }
+    }
+}
+
+// Mission text styles
+.missiontext {
+    background-color: white;
+    margin: 25px;
+    width: -moz-fit-content;
+    width: fit-content;
+
+    & > .text    {
+        text-align: justify;
+        max-width: 500px;
+    }
+
+    &:not(section#mission section &) {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 25px;
+        padding: 50px;
+        min-width: 500px;
+        width: calc(500px - 150px);
+        text-align: center;
+    }
+}
+
+// Text parent styles
+.textParent {
+    display: flex;
     flex-direction: column;
-  }
-  &:not(.hero, .split, .grid, .photos, .enroll__beta, .error &, .welcome &) {
+    gap: 20px;
+}
+
+// Text styles
+.text {
+    margin: 0;
+}
+
+// Main element styles
+main {
+    &:not(.profile) h2 {
+        text-transform: uppercase;
+        font-weight: 400;
+        font-size: 2.5rem;
+    }
+    &.profile {
+        & section {
+            box-shadow: var(--main-shadow);
+            border-radius: 25px;
+            transition: 500ms ease-in-out;
+            &:hover, &:is(:focus-within, :has(:focus-visible)) {
+                border-radius: 10px;
+            }
+        }
+    }
+}
+
+// Section styles
+section {
+    &:not(.split, .split &, .grid, .projects &, .error &) {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+    }
+    &:not(.hero, .split, .grid, .photos, .enroll__beta, .error &, .welcome &) {
+        box-shadow: var(--main-shadow);
+        border-radius: 25px;
+        transition: 500ms ease-in-out;
+        &:hover, &:is(:focus-within, :has(:focus-visible)) {
+            border-radius: 10px;
+        }
+    }
+    &:not(.profile > &) h1 {
+        margin: 0;
+        text-transform: uppercase;
+        font-weight: 200;
+        font-size: 3rem;
+    }
+    &:not(.profile > &) h2 {
+        margin: 0;
+        text-transform: uppercase;
+        font-weight: 400;
+    }
+}
+
+// Login parent section styles
+section.login-parent {
+    background-color: white;
+}
+
+// Menu styles
+#menu, .menu {
+    background-color: white;
+    color: black;
+    margin: 32px;
+    padding: 25px;
+    width: auto;
+    max-width: 375px;
+    list-style-type: none;
+    -webkit-font-smoothing: antialiased;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
     box-shadow: var(--main-shadow);
     border-radius: 25px;
     transition: 500ms ease-in-out;
+
     &:hover, &:is(:focus-within, :has(:focus-visible)) {
-      border-radius: 10px;
+        border-radius: 10px;
     }
-  }
-  &:not(.profile > &) h1 {
-    margin: 0;
-    text-transform: uppercase;
-    font-weight: 200;
-    font-size: 3rem;
-  }
-  &:not(.profile > &) h2 {
-    margin: 0;
-    text-transform: uppercase;
-    font-weight: 400;
-  }
-}
 
-section.login-parent {
-  background-color: white;
-}
-
-#menu, .menu {
-  background-color: white;
-  color: black;
-  
-  margin: 32px;
-  padding: 25px;
-
-  width: auto;//400px;
-  max-width: 375px;
-
-  list-style-type: none;
-  -webkit-font-smoothing: antialiased;
-  // to stop flickering of text in safari
-  
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 15px;
-  
-  box-shadow: var(--main-shadow);
-  border-radius: 25px;
-
-  transition: 500ms ease-in-out;
-
-  &:hover, &:is(:focus-within, :has(:focus-visible)) {
-    border-radius: 10px;
-  }
-
-  & h1 {
-    color: black;
-    margin: 0;
-    text-transform: uppercase;
-    // line-height: 1;
-    font-weight: 200;
-    font-size: 3rem;
-    text-align: center;
-  }
-
-  & > a {
-    text-decoration: none;
-
-    & > li {
-      background-color: white;
-
-      font-size: 22px;
-      transition: all 500ms ease-out;
-      text-align: center;
-
-      #tag {
-        line-height: 1;
-      }
-
-      &:hover {
-        color: blue;
-        transition: all 500ms ease-in;
-      }
+    & h1 {
+        color: black;
+        margin: 0;
+        text-transform: uppercase;
+        font-weight: 200;
+        font-size: 3rem;
+        text-align: center;
     }
-  }
+
+    & > a {
+        text-decoration: none;
+
+        & > li {
+            background-color: white;
+            font-size: 22px;
+            transition: all 500ms ease-out;
+            text-align: center;
+
+            #tag {
+                line-height: 1;
+            }
+
+            &:hover {
+                color: blue;
+                transition: all 500ms ease-in;
+            }
+        }
+    }
 }
 
+// Input and textarea styles
 input[type=text], input[type=email], select, textarea {
-  width: 350px;
-  padding: 10px;
-  border: 1px solid #aaa;
-  border-radius: 4px;
+    width: 350px;
+    padding: 10px;
+    border: 1px solid #aaa;
+    border-radius: 4px;
 }
 
+// Onclick cursor styles
 a[onclick], :is(button, [type="submit"], [type="button"])[onclick], img[onclick] {
-  cursor: pointer;
+    cursor: pointer;
 }
 
+// Form styles
 form[method="POST"] {
-  display: flex;
-  flex-direction: column;
-  align-items: left;
-  justify-content: left;
-  gap: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    justify-content: left;
+    gap: 12px;
+    width: 400px;
+    max-width: 100% !important;
 
-  width: 400px;
-  max-width: 100% !important;
-
-  &:not(section > &) {
-    background-color: white;
-
-    margin: 25px;
-    padding: 25px;
-  }
-
-  section > & {
-    min-width: 400px;
-    
-    & input, & textarea {
-      width: calc(100% - 25px);
+    &:not(section > &) {
+        background-color: white;
+        margin: 25px;
+        padding: 25px;
     }
-  }
 
-  &.contact-form {
-    margin-top: 0;
-  }
-
-  & > *:not(.btn, :is(button, [type="submit"], [type="button"])) {
-    background-color: white;
-  }
-
-  & :is(.btn, :is(button, [type="submit"], [type="button"])) {
-    width: -moz-fit-content;
-    width: fit-content;
-    margin-inline-start: auto;
-    // font-size: calc(11pt + 3px);
-  }
-
-  & > :first-child {
-    margin-top: 0;
-  }
-
-  & > :is(input, textarea, select) {
-    &::selection {
-      background-color: var(--orig-bg-color);
-
-      border-radius: 25px;
-      
-      color: white;
-    }
-  }
-}
-
-form[action] * {
-  -webkit-user-select: none; // Safari
-  -ms-user-select: none; // IE 10 and IE 11
-  user-select: none; // Standard syntax
-}
-
-@media (width < 450px) {
-  form[method="POST"] {
     section > & {
-      min-width: 100%;
+        min-width: 400px;
+        
+        & input, & textarea {
+            width: calc(100% - 25px);
+        }
     }
-  }
+
+    &.contact-form {
+        margin-top: 0;
+    }
+
+    & > *:not(.btn, :is(button, [type="submit"], [type="button"])) {
+        background-color: white;
+    }
+
+    & :is(.btn, :is(button, [type="submit"], [type="button"])) {
+        width: -moz-fit-content;
+        width: fit-content;
+        margin-inline-start: auto;
+    }
+
+    & > :first-child {
+        margin-top: 0;
+    }
+
+    & > :is(input, textarea, select) {
+        &::selection {
+            background-color: var(--orig-bg-color);
+            border-radius: 25px;
+            color: white;
+        }
+    }
 }
 
+// Form action styles
+form[action] * {
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+// Media query for small screens
+@media (width < 450px) {
+    form[method="POST"] {
+        section > & {
+            min-width: 100%;
+        }
+    }
+}
+
+// User select styles for headings, images, and buttons
 h1, h2, h3, h4, h5, h6, img, .btn, :is(button, [type="submit"], [type="button"]) {
-  &[onclick]:not(section &) {
-    -webkit-user-select: none; // Safari
-    -ms-user-select: none; // IE 10 and IE 11
-    user-select: none; // Standard syntax
-  }
-  section :is(img, .btn, :is(button, [type="submit"], [type="button"])) {
-    -webkit-user-select: none; // Safari
-    -ms-user-select: none; // IE 10 and IE 11
-    user-select: none; // Standard syntax
-  }
+    &[onclick]:not(section &) {
+        -webkit-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
+    section :is(img, .btn, :is(button, [type="submit"], [type="button"])) {
+        -webkit-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
 }
 
+// Link and button line-height styles
 a, :is(button, [type="submit"], [type="button"]) {
-  line-height: 1;
+    line-height: 1;
 }

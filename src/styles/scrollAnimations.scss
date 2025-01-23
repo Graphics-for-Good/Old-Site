@@ -1,9 +1,12 @@
+// Import variables
 @use 'variables.scss';
 
+// Mixin for general animations
 @mixin animations {
     animation-timeline: view();
 }
   
+// Mixin for scale animations based on axis
 @mixin scaleAnimations($axis) {
     $animationProps: linear both;
     animation-range: entry var(--fade-animation-value) cover var(--fade-animation-value);
@@ -15,7 +18,7 @@
         animation: scaleOne #{$animationProps};
     }
     
-
+    // Keyframes for scaling both axes
     @keyframes scaleBoth {
         from {
             scale: 0;
@@ -24,6 +27,7 @@
             scale: 1;
         }
     }
+    // Keyframes for scaling one axis
     @keyframes scaleOne {
         from {
             scale: #{$axis} 0;
@@ -34,17 +38,20 @@
     }
 }
 
+// Mixin for split animations
 @mixin splitAnimations {
     animation: split linear both;
     animation-range: cover calc(var(--split-animation-value)/1.5) contain calc(var(--split-animation-value)*2);
 }
   
-
+// Apply animations to main elements except specific classes
 main:not(.projects, .profile, .portal, .frame-page) > * {
+    // Apply scale animations to elements except hero and those containing sections
     // &:not(.hero, :has( > section)) {
     //     @include scaleAnimations(both);
     //     @include animations;
     // }
+    // Apply split animations to elements containing sections
     &:has( > section) {
         &:not(.split) {
             --amt: calc((var(--dWidth)/2) - 50%);
@@ -53,7 +60,7 @@ main:not(.projects, .profile, .portal, .frame-page) > * {
         > :is(section:has( ~ section), section ~ section) {
             --dir: 0;
 
-            /* Uncomment These After Debugging or when deciding to bring back the split animations on sections */
+            // Uncomment These After Debugging or when deciding to bring back the split animations on sections
             // @include splitAnimations;
             // @include animations;
             &:first-of-type {
@@ -65,6 +72,7 @@ main:not(.projects, .profile, .portal, .frame-page) > * {
         }
     }
 
+    // Apply scale animations to vertical and horizontal lines
     // .vHr {
     //     transform-origin: top;
     //     @include scaleAnimations(y);
@@ -75,11 +83,13 @@ main:not(.projects, .profile, .portal, .frame-page) > * {
     //     @include animations;
     // }
 
+    // Apply general animations to vertical and horizontal lines
     .vHr, .hHr {
         @include animations;
     }
 }
 
+// Keyframes for split animations
 @keyframes split {
     from {
         translate: calc(var(--dir)*((var(--amt, 100%)) + 50px)) 0;//-100%;
