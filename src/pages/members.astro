@@ -1,7 +1,9 @@
 ---
+// Import all member info files
 var allMembers = await Astro.glob('../../members/*/info.js')
 var members = []
 
+// Add members with the 'order' in the order of their 'order' property from lowest to highest.
 var orderedMembers = allMembers.filter(m => !!m.default.order)
 
 if (orderedMembers.length > 0) {
@@ -13,6 +15,7 @@ if (orderedMembers.length > 0) {
     }
 }
 
+// Add members with roles other than 'Member' and without an order
 allMembers.map(m => {
     var member = m.default
     var role = !!member.role ? (!!member.role.name ? member.role.name : '') : ''
@@ -20,6 +23,8 @@ allMembers.map(m => {
 
     if (role !== 'Member' && !hasOrder) members.push(m)
 })
+
+// Add members with the role 'Member' and without an order
 allMembers.map(m => {
     var member = m.default
     var role = !!member.role ? (!!member.role.name ? member.role.name : '') : ''
@@ -28,31 +33,35 @@ allMembers.map(m => {
     if (role === 'Member' && !hasOrder) members.push(m)
 })
 
-
+// Import the Layout component
 import Layout from '../layouts/Layout.astro'
+// Import the Hero component
 import Hero from '../components/hero.astro'
 
+// Import the stylesheet for the members page and photos
 import '../styles/pages/members.scss'
 import '../styles/photos.scss'
-
 ---
+<!-- Use the Layout component and set the page title to "Members" -->
 <Layout title="Members">
+    <!-- Main content area -->
     <main id="content">
+        <!-- Use the Hero component with a class of "fullHeight" -->
         <Hero classItems="fullHeight">
             <ul id="menu">
                 <h1>Club Members</h1>
                 {
+                    // Map through the members and display them
                     members.map((member) => {
                         member = member.default
 
+                        // Only display active members whose username does not start with '_'
                         if (!member.username.startsWith('_') && member.status === 'active') {
                             var username = member.username
                             var role = !!member.role ? member.role.name === 'Member' ? '' : member.role.name : ''
 
                             return (
-                                <a href={
-                                    `/members/${username}/`
-                                }>
+                                <a href={`/members/${username}/`}>
                                     <li>
                                         {member.name}
                                         {
@@ -67,10 +76,10 @@ import '../styles/photos.scss'
             </ul>
         </Hero>
     </main>
+    <!-- Inline script to remove query parameters from the URL -->
     <script is:inline>
         if (location.href.includes('?m=')) {
             location.href = location.pathname
         }
     </script>
-    <script is:inline src="/members.js"></script>
 </Layout>

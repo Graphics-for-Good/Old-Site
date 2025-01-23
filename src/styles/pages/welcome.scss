@@ -48,12 +48,12 @@ iframe {
   max-height: 750px;
 }
   
-.welcome section[top] > h1 {
+.welcome section.top > h1 {
   font-weight: 400;
   text-align: center;
 }
   
-.welcome section[middle] {
+.welcome section.middle {
   justify-content: left;
   align-items: center;
   gap: 25px;
@@ -61,12 +61,12 @@ iframe {
   flex: 1;
 }
   
-.welcome section[middle] > .whymakethisclub {
+.welcome section.middle > .whymakethisclub {
   font-weight: 300;
   text-align: center;
 }
   
-.welcome section[bottom] {
+.welcome section.bottom {
   flex-direction: row;
   justify-content: center;
   gap: 100px;

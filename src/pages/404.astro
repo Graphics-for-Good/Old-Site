@@ -1,25 +1,35 @@
 ---
+// Import the Layout component
 import Layout from '../layouts/Layout.astro'
+// Import the Hero component
 import Hero from '../components/hero.astro'
+// Import the stylesheet for the error page
 import '../styles/pages/error.scss'
 
+// Define the error object with code, name, and description
 var error = {
   code: 404, 
   name: 'Not Found', 
   desc: `
-    <h2>Unfortunatly our website does not have the page that you were looking for.</h2><h3>Either we never created this page to begin with or we have deleted it.</h3><h3>Contact <a href="/members/adarsh">The Webmaster</a> to learn more!</h2>
+    <h2>Unfortunately our website does not have the page that you were looking for.</h2><h3>Either we never created this page to begin with or we have deleted it.</h3><h3>Contact <a href="/members/adarsh">The Webmaster</a> to learn more!</h2>
   `, 
 }
 
+// Set the response status and status text
 Astro.response.status = error.code;
 Astro.response.statusText = error.name;
 ---
+<!-- Use the Layout component and set the page title to "404" -->
 <Layout title="404">
+  <!-- Main content area -->
   <main id="content">
+    <!-- Use the Hero component with a class of "error" -->
     <Hero classItems="error">
       <section>
         <div>
+          <!-- Display the error code and name -->
           <h1>{error.code} {error.name}</h1>
+          <!-- Display the error description -->
           <div set:html={error.desc} />
         </div>
       </section>

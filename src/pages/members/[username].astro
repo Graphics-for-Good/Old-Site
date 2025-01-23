@@ -1,14 +1,19 @@
 ---
+// Import the Layout component
 import Layout from '../../layouts/Layout.astro'
 
+// Import the Modal and LargeImage components
 import Modal from '../../components/modal.astro'
 import LargeImage from '../../components/largeImage.astro'
 
+// Import the stylesheet for the members page and photos
 import '../../styles/pages/members.scss'
 import '../../styles/photos.scss'
 
+// Import the updateMember function
 import updateMember from '../../../members/updateMember.js'
 
+// Load default user data
 var dUserData = await Astro.glob('../../../members/_default/info.js')
 dUserData = dUserData.find(d => !!d)
 if (Array.isArray(dUserData)) {
@@ -16,6 +21,7 @@ if (Array.isArray(dUserData)) {
   else dUserData = {}
 }
 
+// Helper functions to get file name and extension
 function getFName(str) {
   if (str.includes('/')) str = str.split('/').slice(-1)[0]
   if (str.includes('?')) str = str.split('?')[0]
@@ -25,7 +31,6 @@ function getFName(str) {
 function getFNameNoExt(str, level) {
   str = getFName(str)
   str = str.slice(0, -1*getFExt(str, level).length)
-
   return str
 }
 
@@ -46,19 +51,21 @@ function getFExt(str, level=1) {
   return str
 }
 
+// Helper function to get the first name
 function firstName(user) {
   user = user.split(' ')[0]
   return user
 }
 
+// Import all portfolio images
 const imgs = import.meta.glob(`../../../members/*/portfolio/*/info.js`, {eager:true})
-
 const pImgs = []
 
 for (const path in imgs) {
   pImgs.push(imgs[path].default as any)
 }
 
+// Function to get static paths for member profiles
 export async function getStaticPaths() {
   var userDatas = await Astro.glob('../../../members/*/info.js')
 
@@ -71,6 +78,7 @@ export async function getStaticPaths() {
   });
 }
 
+// Get the user data from Astro props
 var { userData } = Astro.props;
 if (!userData) userData = dUserData
 
@@ -80,17 +88,20 @@ if (!userData) console.log(`\n${userData.username}`)
 if (!userData.portfolio) userData.portfolio = []
 userData = updateMember(userData)
 
+// Set user status
 if (userData.status) {
   if (userData.status === 'activeGrad') userData.status = 'active'
 }
 else userData.status = 'inactive'
 
+// Filter portfolio images for the user
 var portfolioImgs = pImgs.filter(img => userData.username === img.username)
-
 userData.portfolio = portfolioImgs
 
 ---
+// Use the Layout component and set the page title to the user's name
 <Layout title={userData.name}>
+  <!-- Main content area with a class of "profile" -->
   <main id="content" class="profile">
     {
       userData.status ? 
@@ -131,7 +142,7 @@ userData.portfolio = portfolioImgs
                   userData.portfolio.map(img => {
                     return (
                       <li>
-                        <LargeImage src={`/assets/members/${userData.username}/portfolio/${encodeURIComponent(img.file)}`} alt={`${img.file} by ${firstName(userData.name)}`} draggable={false} />
+                        <LargeImage src={new URL(`/assets/members/${userData.username}/portfolio/${encodeURIComponent(img.file)}`)} alt={`${img.file} by ${firstName(userData.name)}`} draggable={false} id="" orientation="" fullRes={} />
                       </li>
                     )
                   })

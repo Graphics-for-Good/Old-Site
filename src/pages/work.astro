@@ -1,19 +1,27 @@
 ---
+// Import the Layout component
 import Layout from '../layouts/Layout.astro'
+// Import the Grid component
 import Grid from '../components/grid.astro'
 
+// Import the Carousels component and WorkCarouselItems component
 import Carousels from '../components/carousels.astro'
 import WorkCarouselItems from '../components/carousels/workCarouselItems.astro'
 
+// Import the stylesheet for photos
 import '../styles/photos.scss'
 ---
+<!-- Use the Layout component and set the page title to "Member Work" -->
 <Layout title="Member Work">
+  <!-- Main content area -->
   <main id="content">
+    <!-- Section for photos with an ID of "mwork" -->
     <section class="photos" id="mwork">
       <Carousels>
         <section>
           <h1>Member Work</h1>
           <Grid>
+            <!-- Display work carousel items in a grid -->
             <WorkCarouselItems />
           </Grid>
         </section>

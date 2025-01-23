@@ -1,21 +1,34 @@
 ---
+/*--------======== NOT USING THIS PAGE ANYMORE, the "_" at the start of the file name asks Astro not to host it. ========-------- */
+
+// Import the stylesheet for the portal page
 import '../styles/pages/portal.scss'
+// Import global styles
 import '../styles/globals.scss'
 
+// Import the Layout component
 import Layout from '../layouts/Layout.astro'
+// Import the Hero component
 import Hero from '../components/hero.astro'
 ---
+<!-- Use the Layout component and set the page title to "Member Portal" -->
 <Layout title="Member Portal">
+  <!-- Main content area with an ID of "content" and a class of "portal" -->
   <main id="content" class="portal">
+    <!-- Use the Hero component -->
     <Hero>
+      <!-- Section for login functionality -->
       <section class="login-parent">
         <h2>login</h2>
         <div class="login">
+          <!-- Password input field -->
           <input type="password" id="password" />
+          <!-- Submit button -->
           <button class="btn">Submit</button>
         </div>
       </section>
     </Hero>
   </main>
+  // Inline script for handling portal password functionality
   <script is:inline src="/portalpw.js"></script>
 </Layout>

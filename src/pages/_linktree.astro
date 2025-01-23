@@ -1,8 +1,12 @@
 ---
+// Import the Layout component
 import Layout from '../layouts/Layout.astro'
 
+// Import the stylesheet for the linktree page
 import '../styles/pages/linktree.scss'
 ---
+// Use the Layout component and set the page title to "LinkTree"
 <Layout title="LinkTree">
+  <!-- Embed an iframe with a Canva design, set to lazy load and allow fullscreen -->
   <iframe loading="lazy" class="tree" src="https://www.canva.com/design/DAFdPfTBAUM/view?embed" allowfullscreen="allowfullscreen" allow="fullscreen"></iframe>
 </Layout>

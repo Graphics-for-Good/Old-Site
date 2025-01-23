@@ -1,24 +1,18 @@
 ---
+// Import the Layout component
 import Layout from '../layouts/Layout.astro'
 
+// Import the Split and TinySplit components
 import Split from '../components/split.astro'
 import TinySplit from '../components/tinySplit.astro'
 
+// Import the LargeImage component
 import LargeImage from '../components/largeImage.astro'
 
+// Import the stylesheet for the projects page
 import '../styles/pages/projects.scss'
 
-// {
-//   title: 'Treasure Chest Foundation',
-//   description: "They'd like to update it a little to make it more “fresh,” though they like the current logo IDEA and the purple.",
-//   image: {
-//     styles: '--min-parent-height: 175px; --max-height: calc(100% + 50px); --translate-y: -5px',
-//     src: 'treasurechest-foundation.png',
-//     alt: 'The Treasure Chest Foundation Image'
-//   }
-// },
-
-
+// Define the projects array with project details
 var projects = [
   [
     {
@@ -73,34 +67,41 @@ var projects = [
   ]
 ]
 ---
+<!-- Use the Layout component and set the page title to "Projects" -->
 <Layout title="Projects">
+  <!-- Main content area with a class of "projects" -->
   <main id="content" class="projects">
     {
+      // Map through the projects array and display each project
       projects.map((row, i) => {
         return (
-          <>{i !== 0 ? <span class="hHr"></span> : '' }</>
-          <Split>
-            <>{row.length%2 === 1 ? <span class="vHr"></span> : ''}</>
-            {
-              row.map((item, i) => {
-                return (
-                  <>{i !== 0 ? <span class="vHr"></span> : ''}</>
-                  <section>
-                    <h1>{item.title}</h1>
-                    <TinySplit>
-                      <div>
-                        <p set:html={item.description} />
-                      </div>
-                      <div class="img-parent" style={item.image.styles}>
-                        <LargeImage src={`/assets/projects/${item.image.src}`} alt={item.image.alt} draggable={false} />
-                      </div>
-                    </TinySplit>
-                  </section>
-                )
-              })
-            }
-            <>{row.length%2 === 1 ? <span class="vHr"></span> : ''}</>
-          </Split>
+          <>
+            {i !== 0 ? <span class="hHr"></span> : '' }
+            <Split idName="" classItems="">
+              {row.length % 2 === 1 ? <span class="vHr"></span> : ''}
+              {
+                row.map((item, i) => {
+                  return (
+                    <>
+                      {i !== 0 ? <span class="vHr"></span> : ''}
+                      <section>
+                        <h1>{item.title}</h1>
+                        <TinySplit idName="" classItems="">
+                          <div>
+                            <p set:html={item.description} />
+                          </div>
+                          <div class="img-parent" style={item.image.styles}>
+                            <LargeImage src={new URL(`/assets/projects/${item.image.src}`)} alt={item.image.alt} draggable={false} id="" orientation="" fullRes={}/>
+                          </div>
+                        </TinySplit>
+                      </section>
+                    </>
+                  )
+                })
+              }
+              {row.length % 2 === 1 ? <span class="vHr"></span> : ''}
+            </Split>
+          </>
         )
       })
     }

@@ -1,25 +1,35 @@
 ---
+// Import the Layout component
 import Layout from '../layouts/Layout.astro'
+// Import the Hero component
 import Hero from '../components/hero.astro'
+// Import the Split component
 import Split from '../components/split.astro'
 
+// Import the ContactForm component
 import ContactForm from '../components/contactForm.astro'
 
+// Import the Carousels component and specific carousels
 import Carousels from '../components/carousels.astro'
 import ClubCarousel from '../components/carousels/clubCarousel.astro'
 import WorkCarousel from '../components/carousels/workCarousel.astro'
 
+// Import the stylesheet for the index page and photos
 import '../styles/pages/index.scss'
 import '../styles/photos.scss'
 ---
+<!-- Use the Layout component and set the page title to "Home" -->
 <Layout title="Home">
+  <!-- Main content area -->
   <main id="content">
+    <!-- Use the Hero component -->
     <Hero>
       <div>
         <h1>Graphics for Good</h1>
-        <h2>Empowering Non-Profits Through the Power of Design!</h1>
+        <h2>Empowering Non-Profits Through the Power of Design!</h2>
       </div>
     </Hero>
+    <!-- Use the Split component for mission and contact sections -->
     <Split idName="mission" classItems="">
       <section id="mSection">
         <h1>Our Mission</h1>
@@ -40,6 +50,7 @@ import '../styles/photos.scss'
       </section>
     </Split>
     <div class="hHr"></div>
+    <!-- Section for photos with carousels -->
     <section class="photos">
       <Carousels>
         <section id="mwork" align="center">
