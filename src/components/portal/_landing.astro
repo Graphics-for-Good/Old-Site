@@ -1,8 +1,13 @@
 ---
+/*--------======== NOT USING THIS PAGE ANYMORE, the "_" at the start of the file name asks Astro not to host it. ========-------- */
+
+// Import the Hero component
 import Hero from '../hero.astro'
 
+// Define the HTML content as a string
 var HTML = `
 <style>
+    /* Define styles for the hero section */
     .hero {
         padding: 0 10vw;
 
@@ -20,12 +25,14 @@ var HTML = `
         background-position: center;
         color: white;
     
+        // Define text shadow styles for headings
         & h1:not(#menu > h1):not(#whymakethisclub), & h2, & h3 {
             --shadow-color: #0a0a52;
             --shadow-size: 10px;
             text-shadow: var(--shadow-color, var(--orig-bg-color)) 0px 0px var(--shadow-size);
         }
     
+        // Define styles for h1 elements
         & h1:not(#menu > h1):not(#whymakethisclub) {
             margin: 0;
             text-transform: uppercase;
@@ -33,12 +40,14 @@ var HTML = `
             font-size: 4.5rem;
             max-width: 12.89ch;
         }
+        // Define styles for h2 elements
         & h2 {
             margin: 0;
             font-weight: 400;
             font-size: 2.4rem;
             max-width: 30.39ch;
         }
+        // Define styles for h3 elements
         & h3 {
             margin: 0;
             font-weight: 400;
@@ -48,6 +57,7 @@ var HTML = `
     }
 </style>
 <main id="portal">
+    // Define the main content of the portal
     <section class="hero" id="portal" style="min-height: 100px !important; display: flex; align-items: center;">
         <ul id="menu">
             <h1>Member Portal</h1>
@@ -55,6 +65,8 @@ var HTML = `
     </section>
 </main>`
 
+// Encode the HTML content to base64
 var encoded = btoa(HTML)
 ---
+<!-- Output the encoded HTML content -->
 {encoded}

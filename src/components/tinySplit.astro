@@ -1,18 +1,26 @@
 ---
+// Import the Split component
 import Split from '../components/split.astro'
 
+// Define the Props interface for the component
 export interface Props {
-	idName: string;
-  classItems: string;
+	idName: string; // ID for the component
+	classItems: string; // Additional class names for styling
 }
 
+// Destructure the props passed to the component
 const { idName, classItems } = Astro.props as Props;
+
+// Initialize the base class name
 let className = 'tiny'
+
+// Append additional class names if provided
 if (!!classItems) { 
   className = `${className} ${classItems}`
 }
 
 ---
+<!-- Render the Split component with the computed class name and ID -->
 <Split classItems={className} id={idName}>
   <slot />
 </Split>

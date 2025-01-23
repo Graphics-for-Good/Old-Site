@@ -6,13 +6,6 @@ import LargeImage from '../largeImage.astro'
 
 const { carouselIndex } = Astro.props
 
-const imags = import.meta.glob(`../../../members/*/portfolio/*/info.js`, {eager:true})
-
-var images = []
-for (const path in imags) {
-    images.push(imags[path].default as any)
-}
-
 var dId = 'workCarousel'
 ---
 <Carousel carouselIndex={carouselIndex} dataColumns={images.length} dataId={dId}>

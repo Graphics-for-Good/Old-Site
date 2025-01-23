@@ -1,8 +1,8 @@
 ---
-// import { Image } from 'astro:assets';
-
+// Define the Props interface for the component
 export interface Props {
 	id: string;
+    classes: string;
 	src: URL;
     alt: string;
     orientation: string;
@@ -10,16 +10,22 @@ export interface Props {
     fullRes: URL;
 }
 
+// Destructure the props passed to the component
 const { id, classes, src, alt, orientation, draggable, fullRes } = Astro.props as Props;
 
+// Import the component-specific styles
 import '../styles/components/largeImage.scss'
 ---
+<!-- Render the component -->
 <label class=`img-parent ${classes}`>
     <input type="checkbox" />
     <div class="img-container">
+        <!-- Display the full resolution URL for debugging purposes -->
         <!-- <pre>{fullRes}</pre> -->
+        <!-- Render the main image -->
         <img id={id || null} src={src.toString()} style={`--bg: url('${src}')`} alt={alt || ''} orientation={orientation || ''} draggable={draggable || false} loading="lazy" decoding="async" />
         {
+            // Conditionally render an iframe with the full resolution image if available
             !!fullRes ? (
                 <iframe id={id || null} src={fullRes.toString()}>
                     <img id={id || null} src={src.toString()} style={`--bg: url('${src.toString()}')`} alt={alt || ''} orientation={orientation || ''} draggable={draggable || false} loading="lazy" decoding="async" />

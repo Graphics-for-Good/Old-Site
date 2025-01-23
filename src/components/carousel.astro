@@ -1,25 +1,31 @@
 ---
+// Define the properties for the carousel component
 export interface Props {
 	carouselIndex: number;
 	dataColumns: number;
 	dataId: string;
 }
 
+// Destructure the properties from Astro.props
 var { carouselIndex, dataColumns, dataId } = Astro.props as Props;
 
+// Define JavaScript functions for carousel navigation
 var forwFunction = `javascript:goBack(this);`
 var backFunction = `javascript:goForw(this);`
 
 ---
 <div class="carousel" id={dataId} data-index={carouselIndex} data-columns={dataColumns.toString()} active-item={1}>
+  <!-- Backward navigation arrow -->
   <a class="arrow" hidden href={`#${dataId}`} onclick={backFunction}>
     <img src="/assets/arrows/L.svg" class="button" draggable="false" alt={`Move Carousel ${carouselIndex} Backward.`} />
   </a>
+  <!-- Container for carousel images -->
   <div class="img-container">
     <div class="imgs">
       <slot />
     </div>
   </div>
+  <!-- Forward navigation arrow -->
   <a class="arrow" hidden href={`#${dataId}`} onclick={forwFunction}>
     <img src="/assets/arrows/R.svg" class="button" draggable="false" alt={`Move Carousel ${carouselIndex} Forwards.`} />
   </a>

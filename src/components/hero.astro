@@ -1,19 +1,21 @@
 ---
+// Import the SCSS file for styling the hero component
 import '../styles/components/hero.scss'
 
-// export interface Props {
-// 	idName: string;
-//   classItems: string;
-//   inlineStyles: string;
-// }
-
+// Destructure the properties passed to the component
 const { idName, classItems, inlineStyles } = Astro.props;
+
+// Initialize the className with a default value
 let className = 'hero'
+
+// If additional class items are provided, append them to the className
 if (!!classItems) { 
   className = `${className} ${classItems}`
 }
 
 ---
+<!-- Render a section element with dynamic class, id, and inline styles -->
 <section class={className} id={idName} style={inlineStyles}>
+  <!-- Slot for inserting child content into the hero component -->
   <slot />
 </section>

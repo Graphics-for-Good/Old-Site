@@ -1,16 +1,20 @@
 ---
+// Import the footer styles
 import '../styles/components/footer.scss'
 
-var siteUpdatedDate = '11/14/2024'
+// Define variables for site update information
+var siteUpdatedDate = '01/23/2025'
 var uMember = 'adarsh'
 var uMemberName = `${uMember[0].toUpperCase()}${uMember.slice(1)}`
 var fWord = 'Site'
 
-var unixSiteUpdated = new Date(siteUpdatedDate).getTime()/1000
-var newSiteUpdatedDate = (new Date(siteUpdatedDate))
+// Convert the site update date to Unix timestamp and formatted date
+var unixSiteUpdated = new Date(siteUpdatedDate).getTime() / 1000
+var newSiteUpdatedDate = new Date(siteUpdatedDate)
 var finalDate = newSiteUpdatedDate.toString().slice(0, 15)
 var finalDateS = finalDate.split(' ')
 
+// Replace day and month abbreviations with full names
 finalDateS[0] = finalDateS[0]
   .replace('Sun', 'Sunday')
   .replace('Mon', 'Monday')
@@ -34,40 +38,38 @@ finalDateS[1] = finalDateS[1]
   .replace('Nov', 'November')
   .replace('Dec', 'December')
 
-if (finalDateS[2].startsWith('0')) {
-  finalDateS[2] = finalDateS[2].slice(1)
-}
-if (finalDateS[2].endsWith('1') && finalDateS[2] !== '11') {
-  finalDateS[2] = `${finalDateS[2]}st`
-}
-else if (finalDateS[2].endsWith('2') && finalDateS[2] !== '12') {
-  finalDateS[2] = `${finalDateS[2]}nd`
-}
-else if (finalDateS[2].endsWith('3') && finalDateS[2] !== '13') {
-  finalDateS[2] = `${finalDateS[2]}rd`
-}
-else {
-  finalDateS[2] = `${finalDateS[2]}th`
-}
+// Add ordinal suffix to the day
+if (finalDateS[2].startsWith('0')) finalDateS[2] = finalDateS[2].slice(1)
+if (finalDateS[2].endsWith('1') && finalDateS[2] !== '11') finalDateS[2] = `${finalDateS[2]}st`
+else if (finalDateS[2].endsWith('2') && finalDateS[2] !== '12') finalDateS[2] = `${finalDateS[2]}nd`
+else if (finalDateS[2].endsWith('3') && finalDateS[2] !== '13') finalDateS[2] = `${finalDateS[2]}rd`
+else finalDateS[2] = `${finalDateS[2]}th`
 finalDate = `${finalDateS[0]}, ${finalDateS[1]} ${finalDateS[2]}, ${finalDateS[3]}`
 
 ---
+<!-- Footer HTML structure -->
 <footer class="footer">
     <span>
+        <!-- Display the site update information -->
         <span class="fWord">Site</span> Updated on <span class="date">{finalDate}</span> by <a href={`/members/${uMember}`} class="member">{uMemberName}</a> | 
         Check Status at <a href="/status">/status</a>.
     </span>
 </footer>
+
 <script is:inline>
+// Define page-specific update dates
 var pageDates = {
   members: '03/25/2024'
 }
 
+// Get the current page from the URL path
 var page = location.pathname.slice(1)
 if (!!page === false) {
   page = 'index'
   // page = 'members'
 }
+
+// Update the footer information if the page has a specific update date
 if (!!pageDates[page]) {
   siteUpdatedDate = pageDates[page]
   var fWord = 'Page'

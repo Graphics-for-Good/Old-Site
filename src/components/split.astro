@@ -1,18 +1,26 @@
 ---
+// Import the necessary styles for the component
 import '../styles/components/split.scss'
 
+// Define the interface for the component's props
 export interface Props {
-	idName: string;
-  classItems: string;
+	idName: string; // ID for the section element
+	classItems: string; // Additional classes for styling
 }
 
+// Destructure the props passed to the component
 const { idName, classItems } = Astro.props;
+
+// Initialize the base class name for the section
 let className = 'split'
+
+// Append additional classes if provided
 if (!!classItems) { 
   className = `${className} ${classItems}`
 }
 
 ---
 <section class={className} id={idName}>
+  <!-- Render the default slot content inside the section -->
   <slot />
 </section>

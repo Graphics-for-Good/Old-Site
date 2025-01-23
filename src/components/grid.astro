@@ -1,9 +1,12 @@
----
+// Import the necessary styles for the grid component
 import '../styles/components/grid.scss'
 
+// Destructure the properties passed to the component
 var { min, max, gap } = Astro.props
 
 ---
+<!-- Set CSS custom properties for min, max, and gap based on the passed properties -->
 <section class="grid" style={`--min: ${min || 'unset'}; --max: ${max || 'unset'}; --gap: ${gap || 'unset'};`}>
+    <!-- Render the content passed into the grid component -->
     <slot />
 </section>

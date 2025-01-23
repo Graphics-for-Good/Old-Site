@@ -1,31 +1,36 @@
 ---
+// Import the component-specific styles
 import '../styles/components/modal.scss'
 ---
+<!-- Render the modal dialog -->
 <dialog class="modal">
     <content>
+        <!-- Close button for the modal -->
         <a class="cSpan" href="javascript:hideModal()">
             <span class="material-symbols-outlined">
                 close
             </span>
         </a>
-        <div id="top">
-
-        </div>
+        <!-- Top section of the modal -->
+        <div id="top"></div>
+        <!-- Image container within the modal -->
         <div class="imgParent">
+            <!-- Different elements to display the image -->
             <object id="photo" style="display: none;" />
             <img id="photo" draggable="false" style="display: none;" />
             <div id="photo" style="display: none;"></div>
             <iframe id="photo" style="display: none;"></iframe>
         </div>
-        <div id="bot">
-
-        </div>
+        <!-- Bottom section of the modal -->
+        <div id="bot"></div>
     </content>
 </dialog>
 <script is:inline>
-    var closeFunction = hideModal//modal.close()
+    // Define variables and functions for modal behavior
+    var closeFunction = hideModal //modal.close()
     var dTitle = document.title
 
+    // Function to check if the click is outside the modal
     function checkIfOuterModal(e) {
         const dimensions = modal.getBoundingClientRect()
         if (
@@ -37,6 +42,7 @@ import '../styles/components/modal.scss'
         else return false
     }
 
+    // Function to check if the mouse is inside the modal
     function checkIfInnerModal(e) {
         const dimensions = modal.getBoundingClientRect()
         if (
@@ -48,8 +54,10 @@ import '../styles/components/modal.scss'
         else return false
     }
 
+    // Get the modal element
     var modal = document.querySelector('.modal')
 
+    // Add event listener to close the modal if clicked outside
     modal.addEventListener("click", function(e) {
         if (checkIfOuterModal(e)) {
             hideModal()
@@ -57,6 +65,7 @@ import '../styles/components/modal.scss'
         }
     })
 
+    // Add event listeners to handle hover effects
     modal.addEventListener('mouseover', function(e) {
         if (checkIfInnerModal(e)) {
             modal.classList.add('isHover')
@@ -64,12 +73,12 @@ import '../styles/components/modal.scss'
         else {
             modal.classList.remove('isHover')
         }
-        })
-        modal.addEventListener('mouseout', function(e) {
+    })
+    modal.addEventListener('mouseout', function(e) {
         modal.classList.remove('isHover')
     })
 
-
+    // Function to show the modal with specific content
     function showModal(selector, path, capt, desc) {
         var modal = document.getElementById('modal')
         var content = modal.getElementsByTagName('content')[0]
@@ -111,6 +120,7 @@ import '../styles/components/modal.scss'
         document.head.appendChild(sElement)
     }
 
+    // Function to hide the modal and reset its content
     function hideModal(element='div') {
         var modal = document.getElementById('modal')
         var content = modal.getElementsByTagName('content')[0]

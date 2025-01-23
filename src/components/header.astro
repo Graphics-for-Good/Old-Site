@@ -1,19 +1,29 @@
 ---
+// Import the necessary styles for the header component
 import '../styles/components/header.scss'
 
+// Get the current path and domain from Astro's URL object
 var path = Astro.url.pathname
 var domain = Astro.url.origin
+
+// Normalize the path by removing leading and trailing slashes
 if (path.startsWith('/') && path !== '/') path = path.slice(1)
 if (path.endsWith('/') && path !== '/') path = path.slice(0, path.length-1)
 
+// Load navigation link changes from the configuration file
 var navLinkChanges = await Astro.glob('../../config/navbar/links.js')
 navLinkChanges = navLinkChanges.find(data => data).default
 
+// Extract path changes from the navigation link changes
 var pathChanges = navLinkChanges.pathChanges
 
+// Load all pages in the pages directory
 var pages = await Astro.glob('../pages/*.astro')
 
+// Initialize an empty array to store the links
 var links = []
+
+// Add the Home link to the links array
 pages.map(page => {
   var link = getLink(page)
   if (!link) return
@@ -21,6 +31,8 @@ pages.map(page => {
     links.push(link)
   }
 })
+
+// Add other links to the links array
 pages.map(page => {
   var link = getLink(page)
   if (!link) return
@@ -31,6 +43,7 @@ pages.map(page => {
   }
 })
 
+// Function to generate a link object from a page
 function getLink(link) {
   var lPath = link.url
   var hasHome = false
@@ -43,8 +56,8 @@ function getLink(link) {
     hasHome = true
   }
   else if (fileName.startsWith('_')) return ''
-  else if (fileName.startsWith('[') && fileName.endsWith(']')) return ''
-  else if (parseInt(fileName)) return ''
+  else if (fileName.startsWith('[') && fileName.endsWith(']')) return {}
+  else if (parseInt(fileName)) return {}
 
   var rep = pathChanges.filter(r => r.key === fileName)
   if (rep.length > 0) fileName = rep[0].value
@@ -75,7 +88,10 @@ function getLink(link) {
 }
 
 ---
+<!-- Skip to Content link for accessibility -->
 <a id="go2content" href="javascript:scrollToNum()">Skip to Content</a>
+
+<!-- Header component containing the logo, navigation, and social links -->
 <header class="header">
   <a href="/" class="logo-parent">
     <img class="logo" src="/assets/Logo-Blank.svg" alt="Graphics for Good Logo" title="Our Logo">
@@ -94,6 +110,7 @@ function getLink(link) {
           </label>
         </div>
         {
+          // Render navigation links
           links.map(link => {
             var lPath = link.path
             var extraClasses = ''

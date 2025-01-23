@@ -1,18 +1,25 @@
 ---
+// Import the contact form styles
 import '../styles/components/contactForm.scss'
 ---
 <div class="contact-form">
+    <!-- Checkbox to indicate form submission -->
     <input type="checkbox" class="submitted" id="contact-submitted" />
     <div class="form-submitted" id="form-submitted">
-        <h3 align="center" style="font-size: 25px; display: none; margin: 0;">Thank You For Submitting!</h2>
+        <!-- Message displayed after form submission -->
+        <h3 align="center" style="font-size: 25px; display: none; margin: 0;">Thank You For Submitting!</h3>
     </div>
+    <!-- Contact form with action URL to Google Forms -->
     <form class="contact contact-form" action="https://docs.google.com/forms/d/e/1FAIpQLSc4qjrt9QFOiGU4DHHjagYlVsYdS77KiXqwo967oeGySAVMnQ/formResponse" method="POST">
+        <!-- Input fields for organization name, email, and message -->
         <input type="text" name="entry.264713401" placeholder="Organization Name" top required>
         <input type="email" name="entry.2027702877" placeholder="Email Address" required>
         <textarea name="entry.656122872" placeholder="Message" required></textarea>
+        <!-- Hidden input to indicate form submission -->
         <input type="hidden" name="entry.1445095683" value={true.toString()} required />
-        <!-- add hidden Honeypot input to prevent spams -->
-        <input type="hidden" name="_gotcha" style="display:none!important">
+        <!-- Hidden Honeypot input to prevent spam -->
+        <input type="hidden" type="checkbox" name="entry.1612487287" style="display:none!important">
+        <!-- Submit button -->
         <label for="contact-submitted" class="submit-label">
             <input type="submit" class="primary" value="Send">
         </label>

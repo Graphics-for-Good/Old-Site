@@ -1,18 +1,27 @@
 ---
+// Define variables for infobox transition time, message, and enabled state
 var infoboxTransitionTime = '500ms'
 var msg = 'Hello, do you copy?'
 var infoboxEnabled = false
 
+// Import the infobox styles
 import '../styles/components/infobox.scss'
 ---
+<!-- Render the infobox component conditionally based on infoboxEnabled -->
+<!-- If infoboxEnabled is true, render the dialog element -->
 {
   !!infoboxEnabled ? (
-    <dialog id="infobox" class="infobox">
-      <a href="javascript:closeInfobox()" draggable="false">
-        <img src="/assets/icons/x.svg" class="cSpan" draggable="false" />
-      </a>
-      <div class="infobox-inner"></div>
-    </dialog>
-    <script src="/infobox.js" is:inline infoboxTransitionTime={infoboxTransitionTime} msg={msg} infoboxEnabled={infoboxEnabled}></script>
+    <>
+      <dialog id="infobox" class="infobox">
+        <!-- Close button for the infobox -->
+        <a href="javascript:closeInfobox()" draggable="false">
+          <img src="/assets/icons/x.svg" class="cSpan" draggable="false" />
+        </a>
+        <!-- Inner content of the infobox -->
+        <div class="infobox-inner"></div>
+      </dialog>
+      <!-- Include the infobox script with inline attributes -->
+      <script src="/infobox.js" is:inline infoboxTransitionTime={infoboxTransitionTime} msg={msg} infoboxEnabled={infoboxEnabled}></script>
+    </>
   ) : ''
 }

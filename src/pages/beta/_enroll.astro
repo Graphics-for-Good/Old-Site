@@ -6,7 +6,7 @@ import '../../styles/globals.scss'
 // Import the Layout component
 import Layout from '../../layouts/Layout.astro'
 ---
-<!-- Use the Layout component and set the page title to "Enroll | Website Beta" -->
+// Use the Layout component and set the page title to "Enroll | Website Beta"
 <Layout title="Enroll | Website Beta">
   <!-- Main content area with a class of "enroll__beta" -->
   <main id="content" class="enroll__beta">
@@ -23,12 +23,12 @@ import Layout from '../../layouts/Layout.astro'
     }
     // Add event listener to the button for enrollment/un-enrollment
     button.addEventListener('click', function() {
-      if (!localStorage.getItem(lStorName)) {
+      if (!!localStorage.getItem(lStorName) === false) {
         localStorage.setItem(lStorName, true.toString())
         button.textContent = 'UnEnroll'
         alert(`Enrolled you in the beta program.`)
       }
-      if (localStorage.getItem(lStorName)) {
+      if (!!localStorage.getItem(lStorName)) {
         localStorage.removeItem(lStorName)
         button.textContent = 'Enroll'
         alert(`UnEnrolled you from the beta program.`)
