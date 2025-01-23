@@ -8,7 +8,8 @@ const imags = import.meta.glob(`../../../members/*/portfolio/*/info.js`, {eager:
 
 var images = []
 for (const path in imags) {
-    images.push(imags[path].default as any)
+    var img = imags[path].default
+    images.push(img as any)
 }
 
 function getFName(str) {
@@ -49,7 +50,8 @@ var dId = 'workCarousel'
 {
     (
         images.map((img, i) => {
-            return <LargeImage id={`${dId}-${i}`} classes="item" src={new URL(`${Astro.site}/assets/members/${img.username}/portfolio/${img.file}`)} alt={`${getFNameNoExt(img.file)} by ${toProper(img.username)}`} draggable={false} fullRes={img.fullRes} />
+            return <pre>{JSON.stringify(img, null, 4)}</pre>
+            // return <LargeImage id={`${dId}-${i}`} classes="item" src={new URL(`${Astro.site}/assets/members/${img.username}/portfolio/${img.file}`)} alt={`${getFNameNoExt(img.file)} by ${toProper(img.username)}`} draggable={false} fullRes={img.fullRes} />
         })
     )   
 }
