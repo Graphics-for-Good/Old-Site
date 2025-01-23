@@ -142,7 +142,7 @@ userData.portfolio = portfolioImgs
                   userData.portfolio.map(img => {
                     return (
                       <li>
-                        <LargeImage src={new URL(`${Astro.site}/assets/members/${userData.username}/portfolio/${encodeURIComponent(img.file)}`)} alt={`${img.file} by ${firstName(userData.name)}`} draggable={false} id="" orientation="" fullRes={} />
+                        <LargeImage src={`/assets/members/${userData.username}/portfolio/${encodeURIComponent(img.file)}`} alt={`${img.file} by ${firstName(userData.name)}`} draggable={false} id="" orientation="" classes="" fullRes={} />
                       </li>
                     )
                   })
