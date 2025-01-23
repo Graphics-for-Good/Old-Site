@@ -74,8 +74,6 @@ export async function getStaticPaths() {
 var { userData } = Astro.props;
 if (!userData) userData = dUserData
 
-var userData = userDatas.find(data => data.default.username === username)
-
 if (!userData) return Astro.redirect('/members/')
 
 if (!userData) console.log(`\n${username}`)
