@@ -1,28 +1,35 @@
 ---
+// Import the Header, Footer, Modal, and InfoBox components
 import Header from '../components/header.astro'
 import Footer from '../components/footer.astro'
 import Modal from '../components/modal.astro'
 import InfoBox from '../components/infobox.astro'
 
+// Import global styles and other styles
 import '../styles/globals.scss'
 import '../styles/icons.scss'
 import '../styles/scrollAnimations.scss'
 
+// Define the Props interface for the component
 export interface Props {
 	title: string;
 }
 
+// Define default site metadata
 var sTitle = 'Graphics for Good'
 var description = 'Our mission is to help create change in the world through design. We strive to provide free design help for nonprofits that support a wide range of causes.'
 var sUrl = 'https://graphics-for-good.com'
 var pImg = '/assets/preview.svg'
 var largeFavicon = '/favicon.png'
 
+// Get the title from Astro props
 const { title } = Astro.props as Props;
 
+// Set the document title
 let dTitle = `${title} | ${sTitle}`
 if (title === 'Home') dTitle = sTitle
 
+// Generate the canonical URL
 var canonicalUrl = new URL(Astro.url.pathname, Astro.site)
 ---
 <!DOCTYPE html>
@@ -46,21 +53,28 @@ var canonicalUrl = new URL(Astro.url.pathname, Astro.site)
     <title>{dTitle}</title>
   </head>
   <body>
+    <!-- Include the Header component -->
     <Header />
+    <!-- Slot for page content -->
     <slot />
+    <!-- Include the Footer component -->
     <Footer />
+    <!-- Include the InfoBox and Modal components -->
     <InfoBox />
     <Modal />
     <span style="display: none;" hidden tElement id="tElement"></span>
     <script>
+      // Add a bottom border to the header if there is no hero section and the path is not '/portal/'
       if (!!document.querySelector('.hero') === false && location.pathname !== '/portal/') {
         document.querySelector('.header').setAttribute('bBorder', '')
       }
+      // Add transition attribute to buttons and other clickable elements
       document.querySelectorAll('.btn, button, [type="submit"], [type="button"]').forEach(function(btn, i) {
         btn.setAttribute('transition', '')
       })
     </script>
     <script is:inline src="/script.js"></script>
+    <!-- Uncomment the following script to enable eruda for debugging -->
     <!-- <script is:inline>
       javascript:(function () { var script = document.createElement('script'); script.src="//cdn.jsdelivr.net/npm/eruda"; document.body.appendChild(script); script.onload = function () { eruda.init() } })();
     </script> -->
