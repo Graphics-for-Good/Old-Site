@@ -9,6 +9,13 @@ import '../../styles/photos.scss'
 
 import updateMember from '../../../members/updateMember.js'
 
+var dUserData = await Astro.glob('../../../members/_default/info.js')
+dUserData = dUserData.find(d => !!d)
+if (Array.isArray(dUserData)) {
+  if (dUserData.length > 0) dUserData = dUserData[0]
+  else dUserData = {}
+}
+
 function getFName(str) {
   if (str.includes('/')) str = str.split('/').slice(-1)[0]
   if (str.includes('?')) str = str.split('?')[0]
@@ -63,8 +70,8 @@ export async function getStaticPaths() {
   });
 }
 
-var { username } = Astro.params;
-if (!username) username = '_admin'
+var { user } = Astro.params;
+if (!user) username = '_admin'
 
 var userDatas = await Astro.glob('../../../members/*/info.js')
 
