@@ -18,6 +18,7 @@ pMembers.forEach((username, i) => {
             if (fs.lstatSync(`${pMPath}/${username}/portfolio/`).isDirectory()) {
                 var items = fs.readdirSync(`${pMPath}/${username}/portfolio/`)
                 items.forEach(item => {
+                    if (getFExt(item) === '.pdf') return
                     if (!fs.existsSync(`${mPath}/${username}/portfolio/${getFNameNoExt(item)}/info.json`)) {
                         var obj = {
                             username: username, 

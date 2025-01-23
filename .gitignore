@@ -19,11 +19,12 @@ pnpm-debug.log*
 # macOS-specific files
 .DS_Store
 
-# Local Netlify folder
-.netlify
+# Local Astro folder
+.astro/
 
 # Member converted .js files
 members/*/info.js
 
-# Member converted portfolio .js files
+# Member converted portfolio .json/.js files
 members/*/portfolio/*/info.js
+members/*/portfolio/*/info.json
