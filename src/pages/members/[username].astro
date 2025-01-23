@@ -85,7 +85,7 @@ if (userData.status) {
 }
 else userData.status = 'inactive'
 
-var portfolioImgs = pImgs.filter(img => username === img.username)
+var portfolioImgs = pImgs.filter(img => userData.username === img.username)
 
 userData.portfolio = portfolioImgs
 
@@ -131,7 +131,7 @@ userData.portfolio = portfolioImgs
                   userData.portfolio.map(img => {
                     return (
                       <li>
-                        <LargeImage src={`/assets/members/${username}/portfolio/${encodeURIComponent(img.file)}`} alt={`${img.file} by ${firstName(userData.name)}`} draggable={false} />
+                        <LargeImage src={`/assets/members/${userData.username}/portfolio/${encodeURIComponent(img.file)}`} alt={`${img.file} by ${firstName(userData.name)}`} draggable={false} />
                       </li>
                     )
                   })
