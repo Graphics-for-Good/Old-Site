@@ -1,7 +1,9 @@
 {
   "status": "active", 
   "name": "Bridget Won",
-  "role": false, 
+  "role": {
+    "name": "Next External President"
+  },
   "pronunciation": false,
   "email": {
     "year": 26
