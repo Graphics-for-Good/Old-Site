@@ -62,11 +62,11 @@ for (const path in imgs) {
 export async function getStaticPaths() {
   var userDatas = await Astro.glob('../../../members/*/info.js')
 
-  return userDatas.map(data => {
-    if (data.default) data = data.default
+  return userDatas.map(userData => {
+    if (userData.default) userData = userData.default
     return {
-      params: {username: data.username},
-      props: { data },
+      params: {username: userData.username},
+      props: { userData },
     }
   });
 }
