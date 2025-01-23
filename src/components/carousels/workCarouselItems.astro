@@ -50,7 +50,7 @@ var dId = 'workCarousel'
 {
     (
         images.map((img, i) => {
-            return <LargeImage id={`${dId}-${i}`} classes="item" src={new URL(`${Astro.site}/assets/members/${img.username}/portfolio/${img.file}`)} alt={`${getFNameNoExt(img.file)} by ${toProper(img.username)}`} draggable={false} fullRes={img.fullRes} />
+            return <LargeImage id={`${dId}-${i}`} classes="item" src={`/assets/members/${img.username}/portfolio/${img.file}`} alt={`${getFNameNoExt(img.file)} by ${toProper(img.username)}`} draggable={false} fullRes={img.fullRes} orientation="" />
         })
     )   
 }
