@@ -1,7 +1,9 @@
 {
     "status": "active", 
     "name": "Tyler DeCourcey",
-    "role": false,
+    "role": {
+        "name": "Next Secretary"
+      },
     "pronunciation": false,
     "email": {
         "year": 28
