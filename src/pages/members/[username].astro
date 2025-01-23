@@ -76,7 +76,7 @@ if (!userData) userData = dUserData
 
 if (!userData) return Astro.redirect('/members/')
 
-if (!userData) console.log(`\n${username}`)
+if (!userData) console.log(`\n${userData.username}`)
 if (!userData.portfolio) userData.portfolio = []
 userData = updateMember(userData)
 
