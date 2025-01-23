@@ -1,4 +1,6 @@
+// Styles for the mission section
 section#mission {
+  // Apply flexbox layout to specific div elements within the mission section
   & > section > div:not([hHr]):not(div.carousel) {
     display: flex;
     flex-direction: column;
@@ -6,12 +8,13 @@ section#mission {
     gap: var(--padding);
   }
   
-  .missiontext  {
+  // Styles for the mission text
+  .missiontext {
     margin: 0;
     padding: 0;
 
     max-width: 100%;
-    /*  min-width: 500px;  */
+    // min-width: 500px;
     
     text-align: center;
   }

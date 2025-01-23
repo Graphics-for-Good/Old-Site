@@ -1,3 +1,4 @@
+// Main profile container styles
 main.profile {
     --pfp-size: 128px;
     flex: 1;
@@ -7,7 +8,7 @@ main.profile {
     align-items: center;
     flex-direction: column;
 
-    
+    // Section within the profile
     & > section {
         margin: 25px;
         padding: 25px;
@@ -22,11 +23,13 @@ main.profile {
         align-items: center;
         gap: 12.5px;
 
+        // Heading styles within the section
         & h2 {
             margin-block: 0;
         }
     }
 
+    // Profile picture styles
     .pfp[src] {
         max-width: var(--pfp-size);
         max-height: var(--pfp-size);
@@ -44,16 +47,19 @@ main.profile {
         transition: 500ms ease-in-out;
         cursor: pointer;
 
+        // Hover effect for profile picture
         &:hover {
             border-radius: 25%;
             transition: 500ms ease-in-out;
         }
     }
 
+    // Anchor tag styles
     a {
         margin: 0;
         text-decoration: none;
 
+        // Specific styles for email and location links
         &:is(.email, .location) {
             color: black;
             line-height: 1;
@@ -67,10 +73,12 @@ main.profile {
             }
         }
 
+        // Location link styles
         &.location {
             min-height: 16px;
             min-width: 16px;
 
+            // Icon within the location link
             & > div {
                 translate: 0 0.5px;
                 
@@ -85,10 +93,12 @@ main.profile {
                 background-position: center;
             }
     
+            // Hover effect for location icon
             &:hover > div {
                 background-image: url('/assets/icons/location-blue.svg');
             }
 
+            // Span within the location link
             & > span {
                 position: relative;
                 top: -3px;
@@ -98,12 +108,15 @@ main.profile {
         }
     }
 
+    // Name styles
     .name {
         margin: 0;
 
         font-size: 1.75rem;
         text-align: center;
     }
+
+    // Bio styles
     .bio {
         margin: 0;
         max-width: 500px;
@@ -112,6 +125,7 @@ main.profile {
     }
 }
   
+// Social links list styles
 ul.socials {
     margin: 0;
     padding-left: 0;
@@ -123,6 +137,7 @@ ul.socials {
 
     list-style: none;
   
+    // Individual social link item styles
     & > li {
         height: 25px;
         aspect-ratio: 1;
@@ -131,6 +146,7 @@ ul.socials {
         justify-content: center;
         align-items: center;
     
+        // Anchor tag within social link item
         & > a {
             height: 100%;
             width: 100%;
@@ -143,6 +159,7 @@ ul.socials {
 
             cursor: pointer;
     
+            // Image within the anchor tag
             & > img {
                 margin: auto 0 auto 0;
 

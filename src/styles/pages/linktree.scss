@@ -1,23 +1,26 @@
+// Hide .header and .footer elements if they have a sibling .tree element
 :is(.header, .footer) {
     &:has(~ tree), .tree ~ & {
         display: none;
     }
 }
 
+// Another way to hide .header and .footer elements if they have a sibling .tree element
 :is(.header, .footer):has(~ .tree), .tree ~ :is(.header, .footer) {
     display: none;
 }
 
+// Style for .link element
 .link {
-    position: absolute;
+    position: absolute; // Position the link absolutely within its container
     left: 0;
     top: 0;
     
-    padding: 0;
-    margin: 0;
+    padding: 0; // Remove default padding
+    margin: 0; // Remove default margin
     
-    width: 100%;
-    height: 100%;
+    width: 100%; // Make the link take the full width of its container
+    height: 100%; // Make the link take the full height of its container
 
-    border: none; 
+    border: none; // Remove default border
 }

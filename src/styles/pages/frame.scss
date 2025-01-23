@@ -1,18 +1,20 @@
+// Styles for the frame page
 .frame-page {
     box-sizing: border-box;
     padding: 2rem;
 
     display: grid;
-    place-items: center;
+    place-items: center; // Center the content
 }
 
+// Styles for the frame element
 .frame {
     box-sizing: border-box;
 
     max-height: 100%;
     width: auto;
-    aspect-ratio: 16 / 9;
+    aspect-ratio: 16 / 9; // Maintain a 16:9 aspect ratio
 
     border: solid 2px white;
-    border-radius: 2rem;
+    border-radius: 2rem; // Rounded corners
 }

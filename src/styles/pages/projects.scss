@@ -1,13 +1,19 @@
+// // Styles for the projects page
 // .projects {
+//     // Targeting direct child sections
 //     & > section {
+//         // Targeting nested sections within the first section
 //         & > section {
+//             // Targeting divs within the nested sections
 //             & > div {
+//                 // Center align text within these divs
 //                 text-align: center;
 //             }
 //         }
 //     }
 // }
 
+// Direct selector for the same structure as above
 .projects > section > section > div {
     text-align: center;
 }

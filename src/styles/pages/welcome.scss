@@ -1,8 +1,12 @@
+/*--------======== NOT USING THESE STYLES ANYMORE, the "_" at the start of the file name of the page that was using these asks Astro not to host it. ========-------- */
+
+// Set body to full height and block display
 body {
   height: 100%;
   display: block;
 }
   
+// Style iframe to cover the entire viewport
 iframe {
   z-index: 1;
   border: none;
@@ -10,12 +14,14 @@ iframe {
   width: 100%;
 }
 
+// Position welcome elements absolutely
 .welcome, .welcome-bg, .welcome iframe {
   position: absolute;
   top: 0;
   left: 0;
 }
   
+// Style background overlay
 .welcome-bg {
   z-index: 2;
   background-color: white;
@@ -23,6 +29,8 @@ iframe {
   height: 100%;
   width: 100%;
 }
+
+// Style main welcome container
 .welcome {
   z-index: 3;
   height: 100%;
@@ -33,6 +41,7 @@ iframe {
   background-color: transparent;
 }
   
+// Style inner welcome content
 .welcome > div {
   display: flex;
   flex-direction: column;
@@ -48,11 +57,13 @@ iframe {
   max-height: 750px;
 }
   
+// Style top section header
 .welcome section.top > h1 {
   font-weight: 400;
   text-align: center;
 }
   
+// Style middle section
 .welcome section.middle {
   justify-content: left;
   align-items: center;
@@ -61,11 +72,13 @@ iframe {
   flex: 1;
 }
   
+// Style middle section text
 .welcome section.middle > .whymakethisclub {
   font-weight: 300;
   text-align: center;
 }
   
+// Style bottom section
 .welcome section.bottom {
   flex-direction: row;
   justify-content: center;

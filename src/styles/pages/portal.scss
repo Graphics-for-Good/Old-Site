@@ -1,3 +1,4 @@
+// Main portal container styles
 main:is(.portal, #portal) {
     flex: 1;
     width: 100%;
@@ -7,6 +8,7 @@ main:is(.portal, #portal) {
     justify-content: center;
     align-items: center;
   
+    // Menu section within the portal
     & > #menu {
         margin: 25px;
         padding: var(--padding) 25px 25px;
@@ -25,6 +27,7 @@ main:is(.portal, #portal) {
     }
 }  
 
+// Template styles
 .template {
     padding: 20px;
     margin: 20px 15px;
@@ -32,13 +35,14 @@ main:is(.portal, #portal) {
     background-color: white;
     color: black;
   
+    // Inherit background and color for all children
     * {
         background-color: inherit;
         color: inherit;
     }
 }
   
-  
+// Email template text styles
 #emailtemplatetext {
     margin: 10px;
 
@@ -48,6 +52,8 @@ main:is(.portal, #portal) {
     border-radius: 10px !important;
     text-align: center;
 }
+
+// Inherit styles for children of email template text
 #emailtemplatetext > * {
     background-color: white !important;
     color: black;
