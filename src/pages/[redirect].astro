@@ -27,22 +27,17 @@ export async function getStaticPaths() {
             dest: 'https://scribehow.com/shared/Delete_Gmail_Account_From_Settings__78OV_z6vSX-eRlqEdG1kgA', 
         },
     ]
-    return redirects.map(({ slug, dest }) => {
+    return redirects.map(redirect => {
         return {
-            params: {redirect: slug}
+            params: {redirect: redirect.slug}
+            props: {redirect}
         };
     });
 }
 
-var { redirect } = Astro.params;
+var { rObj } = Astro.params;
 
-if (!redirect) redirect = 'not-correct'
-var redirectObj = redirects.filter(r => r.slug.endsWith(redirect))
-
-var rObj = {mode: '', dest: ''} as { slug: string; dest: string; mode: string; } | { slug: string; dest: string; mode?: undefined; }
-if (redirectObj.length > 0) rObj = redirectObj[0]
-else rObj = def
-
+if (!rObj) rObj = def
 if (!rObj.mode) rObj.mode = 'page'
 
 function getTitle(link) {
