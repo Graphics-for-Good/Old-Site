@@ -1,7 +1,8 @@
+// When a checkbox inside .img-parent is checked, clip the overflow of the html element
 html:has(.img-parent > input[type="checkbox"]:checked) {
     overflow: clip;
     body {
-        z-index: 1;
+        z-index: 1; // Create a new stacking context
     }
 }
 
@@ -10,9 +11,9 @@ html:has(.img-parent > input[type="checkbox"]:checked) {
     overflow: hidden;
     // display: grid;
     height: fit-content;
-
     cursor: pointer;
 
+    // Styles when the checkbox inside .img-parent is not checked
     &:not(:has(> input[type="checkbox"]:checked)) {
         * {
             max-height: var(--max, 100%);
@@ -25,33 +26,29 @@ html:has(.img-parent > input[type="checkbox"]:checked) {
         // }
     }
 
+    // Styles when the checkbox inside .img-parent is checked
     &:has(> input[type="checkbox"]:checked) {
         inset: 0;
         &::before {
             content: '';
             position: fixed;
             inset: 0;
-            background-color: var(--bg-color);
-            opacity: 0.9;
+            background-color: var(--bg-color); // Background overlay color
+            opacity: 0.9; // Background overlay opacity
         }
 
         > .img-container {
             position: fixed;
             inset: 0;
-
             box-sizing: border-box;
             padding: 1rem;
             margin: auto;
-
             border-radius: inherit;
-
             max-height: 100dvh;
             max-width: 100dvh;
-
             display: grid;
             place-items: center;
-
-            z-index: 2;
+            z-index: 2; // Ensure image container is on top
 
             > img {
                 max-height: 100%;
@@ -60,13 +57,13 @@ html:has(.img-parent > input[type="checkbox"]:checked) {
                 // background-repeat: no-repeat;
                 // background-size: cover;
                 // background-position: center;
-    
                 border-radius: inherit;
                 // box-shadow: inherit;
             }
         }
     }
 
+    // Hidden checkbox used for toggling the image view
     > input[type="checkbox"] {
         position: absolute;
         bottom: 100%;
@@ -79,6 +76,8 @@ html:has(.img-parent > input[type="checkbox"]:checked) {
         height: 0;
         background-color: transparent;
     }
+
+    // Default styles for the image container
     > .img-container {
         height: fit-content;
         width: fit-content;

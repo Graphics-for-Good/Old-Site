@@ -1,98 +1,97 @@
 .modal {
-    --margin: 50px;
+    --margin: 50px; // Define a CSS variable for margin
 
-    margin: calc(var(--margin) - 9px);
+    margin: calc(var(--margin) - 9px); // Calculate margin using the variable
     padding: 0;
 
-	height: calc(100% - (var(--margin)*2) + 18px);
-    width: calc(100% - (var(--margin)*2) + 18px);
+	height: calc(100% - (var(--margin)*2) + 18px); // Calculate height using the variable
+    width: calc(100% - (var(--margin)*2) + 18px); // Calculate width using the variable
 
-	background-color: white;
-    background: transparent;
-    color: black;
+	background-color: white; // Set background color to white
+    background: transparent; // Set background to transparent
+    color: black; // Set text color to black
   
-    border: none;
-    border-radius: 25px;
+    border: none; // Remove border
+    border-radius: 25px; // Set border radius
 
-	isolation: isolate;
+	isolation: isolate; // Create a new stacking context
 
-	transition: 500ms ease-in-out;
+	transition: 500ms ease-in-out; // Set transition for smooth animations
   
     &::backdrop {
-		width: 100%;
-		height: 100%;
+		width: 100%; // Set backdrop width to 100%
+		height: 100%; // Set backdrop height to 100%
 
-		background-color: var(--orig-bg-color, #1a4276);
-		opacity: 75%;
+		background-color: var(--orig-bg-color, #1a4276); // Set backdrop background color
+		opacity: 75%; // Set backdrop opacity
     }
   
     & content {
-		height: 100%;
+		height: 100%; // Set content height to 100%
     }
     
     &.isHover {
-		border-radius: 10px;
+		border-radius: 10px; // Change border radius on hover
     }
   
     & div {
 		&:not(#top, #bot, #photo) {
-			height: calc(100% - 100px);
+			height: calc(100% - 100px); // Calculate height for specific divs
 
-			display: flex;
-			justify-content: center;
+			display: flex; // Use flexbox for layout
+			justify-content: center; // Center content horizontally
 		}
 
 		&#top, &#bot {
-			padding: 12.5px;
+			padding: 12.5px; // Set padding for top and bottom divs
 
-			height: 25px;
+			height: 25px; // Set height for top and bottom divs
 
-			text-align: center;
+			text-align: center; // Center text
 		
 			* {
-				background-color: transparent;
+				background-color: transparent; // Set background color to transparent for all children
 			}
 		}  
     }
   
     .cSpan {
-		position: absolute;
-		top: 12.5px;
-		right: 12.5px;
+		position: absolute; // Position absolutely
+		top: 12.5px; // Set top position
+		right: 12.5px; // Set right position
 
 		/*  margin: 12.5px;  */
 
-		width: 25px !important;
-		aspect-ratio: 1;
+		width: 25px !important; // Set width with !important
+		aspect-ratio: 1; // Maintain aspect ratio
 
-		cursor: pointer;
+		cursor: pointer; // Change cursor to pointer
     }
   
     #photo {
-		background-color: white;
+		background-color: white; // Set background color to white
 
-		transition: 500ms ease-in;
+		transition: 500ms ease-in; // Set transition for smooth animations
 
 		&:hover {
-			transition: 500ms ease-out;
+			transition: 500ms ease-out; // Set transition for hover state
 		}
 
 		&.h:not(img) {
-			height: 100%;
+			height: 100%; // Set height to 100% for specific elements
 		}
 		&.w:not(img) {
-			width: 100%;
+			width: 100%; // Set width to 100% for specific elements
 		}
     }
     & img#photo:not(.w):not(.h) {
-		max-width: 100%;
-		max-height: 100%;
-		height: 100%;
+		max-width: 100%; // Set max width to 100%
+		max-height: 100%; // Set max height to 100%
+		height: 100%; // Set height to 100%
     }
   
     & iframe#photo {
-		border: none;
+		border: none; // Remove border for iframe
     }
-  }
-  
-  
+}
+

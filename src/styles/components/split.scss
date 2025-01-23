@@ -1,29 +1,26 @@
+// Styles for the split section, excluding the tiny variant
 section.split:not(.tiny) {
     --padding: 25px;
-  
     color: black;
-  
     width: 100%;
-    
     display: flex;
     justify-content: center;
     gap: var(--padding);
     
+    // Styles for child sections within the split section
     & > section {
         flex: 1;
-
         background-color: white;
         color: black;
-    
         box-sizing: border-box;
         margin-block: var(--padding);
         padding: var(--padding);
-            
         display: flex;
         flex-direction: column;
         align-items: center;
         gap: var(--padding);
         
+        // Margin adjustments for the first and last child sections
         &:first-child {
             margin-inline-start: var(--padding);
         }
@@ -31,23 +28,27 @@ section.split:not(.tiny) {
             margin-inline-end: var(--padding);
         }
         
+        // Specific styles for the section with id 'contact'
         &#contact {
             & h2 {
                 margin-block: 0;
             }
         }
         
+        // Styles for div elements that are not hHr
         & > div:not([hHr]) {
             min-height: calc(50% - 50px);
             width: 100%;
         }
     
+        // Center align text for heading elements
         & :is(h1, h2, h3, h4, h5, h6) {
             text-align: center;
         }
     }
 }
 
+// Media query for screens wider than 1006px
 @media (width >= 1006px) {
     section.split:not(.tiny) {
         & > section {
@@ -56,17 +57,20 @@ section.split:not(.tiny) {
     }
 }
 
+// Media query for screens narrower than 1006px
 @media (width < 1006px) {
     section.split {
         margin-inline: auto;
         flex-direction: column;
         max-width: 700px;
         
+        // Styles for vertical horizontal rule
         & > .vHr {
             width: var(--height);
             height: 2px;
         }
         
+        // Adjustments for child sections
         & > section {
             max-width: 100%;
             &:first-child {
@@ -81,17 +85,17 @@ section.split:not(.tiny) {
     }
 }
   
+// Styles for the tiny variant of the split section
 section.split.tiny {
     --padding: 25px;
-  
     flex: 1;
     width: 100%;
-    
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr;
     gap: calc(var(--padding)/2);
     
+    // Styles for child div elements
     & > div {
         &:not(.img-parent) {
             display: flex;
@@ -100,6 +104,7 @@ section.split.tiny {
             gap: calc(var(--padding)/2);
         }
 
+        // Styles for image parent divs
         &.img-parent {
             position: relative;
             overflow: hidden;
@@ -120,18 +125,21 @@ section.split.tiny {
             }
         }
         
+        // Styles for paragraph elements
         p {
             margin-block: 0;
             text-align: center;
             text-wrap: balance;
         }
 
+        // Center align text for heading elements
         & :is(h1, h2, h3, h4, h5, h6) {
             text-align: center;
         }
     }
 }
     
+// Media query for screens narrower than 490.5px
 @media (width < 490.5px) {
     section.split.tiny {
         grid-template-columns: 1fr;
@@ -139,6 +147,7 @@ section.split.tiny {
     }
 }
 
+// Media query for screens narrower than 1010px
 @media (width < 1010) {
     section.split {
         flex-direction: column;

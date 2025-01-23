@@ -1,7 +1,9 @@
+// Define global variables for gap, padding, and minimum size
 $gap: 1rem;
 $padding: 1rem;
 $min: 12rem;
 
+// Styling for the .frame class inside .grid
 .grid .frame {
     $ar: 2;
     box-sizing: border-box;
@@ -17,25 +19,30 @@ $min: 12rem;
     border-radius: 1rem;
 }
 
+// Styling for .grid class, excluding .lite variant
 .grid:not(.lite) {
     display: grid;
     gap: var(--gap, $gap);
 
+    // Define grid template columns for old and new browsers
     grid-template-columns: repeat(auto-fit, minmax(var(--min, $min), var(--max, 1fr))); /* Old Browsers (no "min()") */
     grid-template-columns: repeat(auto-fit, minmax(min(var(--min, $min), var(--max, 100%)), var(--max, 1fr))); /* New Browser (yes "min()")*/
 
     justify-content: center;
 
+    // Loop to handle different numbers of items in the grid
     @for $i from 1 through 3 {
         /* Only $i */
         &:has(
             .item:nth-last-child(n + #{$i}):nth-last-child(-n + #{$i}):first-child,
             .item:nth-last-child(n + #{$i}):nth-last-child(-n + #{$i}):first-child ~ .item
         ) {
+            // Define grid template columns for old and new browsers
             grid-template-columns: repeat(#{$i + 2}, minmax(0, 1fr)); /* Old Browsers (no "min()") */
             grid-template-columns: repeat(#{$i + 2}, minmax(min(0, 100%), 1fr)); /* New Browser (yes "min()")*/
 
             .item {
+                // Adjust grid columns based on item position
                 &:first-child:not(:last-child) {
                     grid-column: 2 / 3;
                 }
@@ -53,6 +60,7 @@ $min: 12rem;
     }
 }
 
+// Styling for .item class
 .item {
     box-sizing: border-box;
     padding: $padding;
@@ -71,6 +79,7 @@ $min: 12rem;
 
     text-decoration: inherit;
 
+    // Styling for the image inside .item
     &__img {
         width: 100%;
         aspect-ratio: 1;
@@ -83,16 +92,19 @@ $min: 12rem;
         border-radius: #{$gap - $padding};
     }
 
+    // Styling for the info section inside .item
     &__info {
         overflow-x: hidden;
         display: grid;
         gap: $padding;
     }
 
+    // Ensure max-width for info, title, and content sections
     &__info, &__title, &__content {
         max-width: 100%;
     }
 
+    // Styling for title and content inside .item
     &__title, &__content {
         margin-block: 0;
         margin-inline: auto;
@@ -100,6 +112,7 @@ $min: 12rem;
         text-align: center;
     }
 
+    // Additional styling for content inside .item
     &__content {
         text-wrap: wrap;
         text-overflow: ellipsis;

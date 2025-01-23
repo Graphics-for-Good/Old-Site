@@ -1,82 +1,85 @@
 .hero {
+    // Define padding and width for the hero section
     --padding-inline: 10vw;
-
     padding: 0 var(--padding-inline);
-
     width: calc(100% - var(--padding-inline)*2);
 
+    // Set background properties
     background-color: #6c78e5;
     background-image: url('/assets/header.svg');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
 
+    // Set text color
     color: white;
-  
+
+    // Flexbox settings for centering content
     display: flex;
     justify-content: center;
     flex-direction: column;
 
+    // Conditional styling for non-fullHeight hero
     &:not(&.fullHeight) {
         min-height: 37.5vw;
     }
     
+    // Conditional styling for fullHeight hero
     &.fullHeight {
         flex: 1;
-
         min-height: calc(100% - 210px);
         align-items: center;
     }
-  
+
+    // Styling for direct child div elements
     & > div {
         width: 100%;
-
         display: flex;
         justify-content: center;
         align-items: flex-start;
         flex-direction: column;
 
+        // Ensure child elements have a max-width of fit-content
         & > * {
             max-width: fit-content;
         }
     }
-  
+
+    // Text shadow for h1, h2, and h3 elements
     & h1:not(#menu > h1):not(.missiontitle), & h2, & h3 {
         --shadow-color: #0a0a52;
         --shadow-size: 10px;
         text-shadow: var(--shadow-color, var(--orig-bg-color)) 0px 0px var(--shadow-size);
     }
-  
+
+    // Specific styling for h1 elements
     & h1:not(#menu > h1):not(.missiontitle) {
         margin: 0;
-
         max-width: 12.89ch;
-
         font-size: 4.5rem;
         font-weight: 400;
         text-transform: uppercase;
     }
+
+    // Specific styling for h2 elements
     & h2 {
         margin: 0;
-
         max-width: 30.39ch;
-
         font-size: 2.4rem;
         font-weight: 400;
     }
+
+    // Specific styling for h3 elements
     & h3 {
         margin: 0;
-
         max-width: 56.59ch;
-
         font-size: 1.2rem;
         font-weight: 400;
     }
 
+    // Styling for section elements that are not children of .error
     &:not(.error) > section {
         background: white;
         color: black;
     }
-  }
-    
-  
+}

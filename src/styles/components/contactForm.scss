@@ -1,6 +1,8 @@
+// Styles for the contact form container
 .contact-form {
     position: relative;
 
+    // Styles for the hidden submitted input
     > .submitted {
         position: absolute;
         bottom: 100%;
@@ -13,23 +15,27 @@
         height: 0;
         background-color: transparent;
 
+        // Styles when the submitted input is checked (shown)
         &:checked {
             pointer-events: none;
+
+            // Hide the contact form when submitted
             ~ .contact-form {
                 display: none;
 
+                // Disable pointer events for the submit label
                 .submit-label {
                     pointer-events: none;
                 }
             }
         }
+
+        // Styles when the submitted input is not checked
         &:not(:checked) {
+            // Hide the form-submitted message
             ~ .form-submitted {
                 display: none;
             }
         }
-
     }
-
-    
 }

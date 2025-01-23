@@ -1,3 +1,4 @@
+// Styling for the skip-to-content link
 a#go2content[href="javascript:scrollToNum()"] {
   position: absolute;
   top: 0;
@@ -34,11 +35,13 @@ a#go2content[href="javascript:scrollToNum()"] {
 
   z-index: 2;
 
+  // Remove border and add shadow for .noBorder variant
   &.noBorder {
     border: none;
     box-shadow: 0px 0px 10px 0px var(--orig-bg-color);
   }
 
+  // Add padding to the first and last child elements
   & > :first-child {
     padding-left: var(--padding);
   }
@@ -68,6 +71,7 @@ a#go2content[href="javascript:scrollToNum()"] {
 
       transition: 0.25s ease-in-out;
 
+      // Change border radius on hover
       &:hover {
         border-radius: 37.5px;
       }
@@ -75,8 +79,7 @@ a#go2content[href="javascript:scrollToNum()"] {
   }
   
   & h2 {
-  /*  margin: 0;  */
-
+    // Change text color for h2 elements
     color: black;
   }
   .nav {
@@ -114,13 +117,14 @@ a#go2content[href="javascript:scrollToNum()"] {
       background-size: contain;
       background-repeat: no-repeat;
       background-position: center;
-      /* background-color: white; */
+      // background-color: white;
       color: black;
 
       border-radius: 5px;
 
       display: block;
 
+      // Specific styling for Instagram and email icons
       &#instagram {
         border-radius: 8px;
         background-image: url('/assets/icons/instagram.svg');
@@ -133,6 +137,7 @@ a#go2content[href="javascript:scrollToNum()"] {
   }
 }
 
+// Media query for screens wider than 625px
 @media (width > 625px) {
   .header {
     .nav-hbg {
@@ -150,6 +155,7 @@ a#go2content[href="javascript:scrollToNum()"] {
   }
 }
 
+// Media query for screens 625px wide or narrower
 @media (width <= 625px) {
   .header {
     .nav-hbg {
