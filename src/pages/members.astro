@@ -16,12 +16,27 @@ if (orderedMembers.length > 0) {
 }
 
 // Add members with roles other than 'Member' and without an order
+var roleMembers = []
+
 allMembers.map(m => {
     var member = m.default
     var role = !!member.role ? (!!member.role.name ? member.role.name : '') : ''
     var hasOrder = !!member.order
 
-    if (role !== 'Member' && !hasOrder) members.push(m)
+    if (role !== 'Member' && !hasOrder) roleMembers.push(role)
+})
+
+roleMembers.sort()
+
+function getAllIndices(arr, val) {
+  return arr.map((el, i) => (el === val ? i : -1)).filter((i) => i !== -1);
+}
+
+roleMembers.map(m => {
+    var indices = getAllIndices(allMembers, m)
+    indices.map(i => {
+        members.push(allMembers[i])
+    })
 })
 
 // Add members with the role 'Member' and without an order
