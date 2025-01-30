@@ -20,7 +20,7 @@ var roleMembers = []
 
 allMembers.map(m => {
     var member = m.default
-    var role = !!member.role ? (!!member.role.name ? member.role.name : '') : ''
+    var role = !!member.role ? (!!member.role.name ? member.role.name : 'Member') : 'Member'
     var hasOrder = !!member.order
 
     if (role !== 'Member' && !hasOrder) roleMembers.push(role)
@@ -29,20 +29,23 @@ allMembers.map(m => {
 roleMembers.sort()
 
 function getAllIndices(arr, val) {
-  return arr.map((el, i) => (el === val ? i : -1)).filter((i) => i !== -1);
+  const indices = [];
+  let i = -1;
+  while ((i = arr.indexOf(val, i + 1)) !== -1) {
+    indices.push(i);
+  }
+  return indices;
 }
 
-roleMembers.map(m => {
-    var indices = getAllIndices(allMembers, m)
-    indices.map(i => {
-        members.push(allMembers[i])
-    })
+roleMembers.map(r => {
+    var m = allMembers.filter(m => !!m.default ? !!m.default.role ? m.default.role.name === r : false : false)[0]
+    members.push(m)
 })
 
 // Add members with the role 'Member' and without an order
 allMembers.map(m => {
     var member = m.default
-    var role = !!member.role ? (!!member.role.name ? member.role.name : '') : ''
+    var role = !!member.role ? (!!member.role.name ? member.role.name : 'Member') : 'Member'
     var hasOrder = !!member.order
 
     if (role === 'Member' && !hasOrder) members.push(m)
@@ -68,7 +71,7 @@ import '../styles/photos.scss'
                 {
                     // Map through the members and display them
                     members.map((member) => {
-                        member = member.default
+                        if (member.default) member = member.default
 
                         // Only display active members whose username does not start with '_'
                         if (!member.username.startsWith('_') && member.status === 'active') {
