@@ -31,7 +31,7 @@ if (title === 'Home') dTitle = sTitle
 
 // Generate the canonical URL
 
-var astroSite = Astro.site
+var astroSite = Astro.site.toString()
 if (astroSite.startsWith('http://')) astroSite = `https://${astroSite.slice('http://'.length)}`
 
 var canonicalUrl = new URL(Astro.url.pathname, astroSite)
