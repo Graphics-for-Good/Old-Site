@@ -30,7 +30,11 @@ let dTitle = `${title} | ${sTitle}`
 if (title === 'Home') dTitle = sTitle
 
 // Generate the canonical URL
-var canonicalUrl = new URL(Astro.url.pathname, Astro.site)
+
+var astroSite = Astro.site
+if (astroSite.startsWith('http://')) astroSite = `https://${astroSite.slice('http://'.length)}`
+
+var canonicalUrl = new URL(Astro.url.pathname, astroSite)
 ---
 <!DOCTYPE html>
 <html lang="en">
