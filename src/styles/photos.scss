@@ -80,12 +80,10 @@ ul:is(#photos, .photos) {
 
             cursor: pointer;
 
-            transition: 500ms ease-in-out;
+            transition: border-radius 500ms ease-in-out;
   
             &:hover {
                 border-radius: 10px;
-
-                transition: 500ms ease-in-out;
             }
         }
   
