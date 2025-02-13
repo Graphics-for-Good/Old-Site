@@ -1,5 +1,8 @@
+@import '../variables.scss';
+
 // When a checkbox inside .img-parent is checked, clip the overflow of the html element
 html:has(.img-parent > input[type="checkbox"]:checked) {
+    overflow: hidden;
     overflow: clip;
     body {
         z-index: 1; // Create a new stacking context
@@ -33,21 +36,22 @@ html:has(.img-parent > input[type="checkbox"]:checked) {
             content: '';
             position: fixed;
             inset: 0;
-            background-color: var(--bg-color); // Background overlay color
+            background-color: $bg-color; // Background overlay color
             opacity: 0.9; // Background overlay opacity
         }
 
         > .img-container {
+            --pad: clamp(0.5rem, 1.5vw, 2rem);
+
             position: fixed;
             inset: 0;
             box-sizing: border-box;
-            padding: 1rem;
+            padding: var(--pad);
             margin: auto;
             border-radius: inherit;
-            max-height: 100dvh;
-            max-width: 100dvw;
+            max-height: calc(100dvh - var(--pad)*2);
+            max-width: calc(100dvw - var(--pad)*2);
             display: grid;
-            place-items: center;
             z-index: 2; // Ensure image container is on top
 
             > img {
@@ -59,6 +63,7 @@ html:has(.img-parent > input[type="checkbox"]:checked) {
                 // background-position: center;
                 border-radius: inherit;
                 // box-shadow: inherit;
+
             }
         }
     }
