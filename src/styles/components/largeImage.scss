@@ -45,7 +45,7 @@ html:has(.img-parent > input[type="checkbox"]:checked) {
             margin: auto;
             border-radius: inherit;
             max-height: 100dvh;
-            max-width: 100dvh;
+            max-width: 100dvw;
             display: grid;
             place-items: center;
             z-index: 2; // Ensure image container is on top
