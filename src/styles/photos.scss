@@ -73,15 +73,19 @@ ul:is(#photos, .photos) {
             }
         }
 
+        @mixin imgStylesTransition() {
+            border-radius: 15px;
+            transition: border-radius 500ms ease-in-out;
+        }
+
         & img {
             width: 100%;
 
-            border-radius: 15px;
 
             cursor: pointer;
 
-            transition: border-radius 500ms ease-in-out;
-  
+            @include imgStylesTransition;
+
             &:hover {
                 border-radius: 10px;
             }
@@ -93,12 +97,11 @@ ul:is(#photos, .photos) {
             max-width: 100%;
             height: auto;
 
-            border-radius: 15px;
-            transition: 500ms ease-in-out;
+
+            @include imgStylesTransition;
   
             &:hover {
                 border-radius: 10px;
-                transition: 500ms ease-in-out;
             }
         }
     }
