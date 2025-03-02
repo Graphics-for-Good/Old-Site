@@ -1,55 +1,37 @@
 ---
 // Import all member info files
-var allMembers = await Astro.glob('../../members/*/info.js')
-var members = []
+var theMembers = import.meta.glob('../../members/*/info.js', { eager: true });
+var allMembers = Object.values(theMembers);
+var members = [];
 
-// Add members with the 'order' in the order of their 'order' property from lowest to highest.
-var orderedMembers = allMembers.filter(m => !!m.default.order)
+// Sort members by order first
+const orderedMembers = allMembers
+    .filter(m => m.default.order)
+    .sort((a, b) => (a.default.order || 0) - (b.default.order || 0));
 
-if (orderedMembers.length > 0) {
-    for (let i = 1; i <= orderedMembers.length; i++) {
-        var orderedMember = allMembers.filter(m => m.default.order === i)
-        orderedMember.forEach(m => {
-            members.push(m)
-        })
-    }
-}
+members.push(...orderedMembers);
 
-// Add members with roles other than 'Member' and without an order
-var roleMembers = []
+// Get unique roles excluding 'Member' and sort them
+const roleMembers = [...new Set(
+    allMembers
+        .filter(m => m.default.role?.name && m.default.role.name !== 'Member' && !m.default.order)
+        .map(m => m.default.role.name)
+)].sort();
 
-allMembers.map(m => {
-    var member = m.default
-    var role = !!member.role ? (!!member.role.name ? member.role.name : 'Member') : 'Member'
-    var hasOrder = !!member.order
+// Add members by role
+roleMembers.forEach(role => {
+    const membersWithRole = allMembers.filter(m => 
+        m.default.role?.name === role && !m.default.order
+    );
+    members.push(...membersWithRole);
+});
 
-    if (role !== 'Member' && !hasOrder) roleMembers.push(role)
-})
-
-roleMembers.sort()
-
-function getAllIndices(arr, val) {
-  const indices = [];
-  let i = -1;
-  while ((i = arr.indexOf(val, i + 1)) !== -1) {
-    indices.push(i);
-  }
-  return indices;
-}
-
-roleMembers.map(r => {
-    var m = allMembers.filter(m => !!m.default ? !!m.default.role ? m.default.role.name === r : false : false)[0]
-    members.push(m)
-})
-
-// Add members with the role 'Member' and without an order
-allMembers.map(m => {
-    var member = m.default
-    var role = !!member.role ? (!!member.role.name ? member.role.name : 'Member') : 'Member'
-    var hasOrder = !!member.order
-
-    if (role === 'Member' && !hasOrder) members.push(m)
-})
+// Add remaining regular members
+const regularMembers = allMembers.filter(m => 
+    (!m.default.role || m.default.role.name === 'Member') && 
+    !m.default.order
+);
+members.push(...regularMembers);
 
 // Import the Layout component
 import Layout from '../layouts/Layout.astro'
