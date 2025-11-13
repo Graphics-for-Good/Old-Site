@@ -1,4 +1,9 @@
 ---
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/hero.astro';
+import '../styles/pages/members.scss';
+import '../styles/photos.scss';
+
 const memberGlob = import.meta.glob('../../members/*/info.js', { eager: true });
 const allMembers = Object.values(memberGlob) as any[];
 const members: any[] = [];
@@ -31,11 +36,6 @@ const regularMembers = allMembers.filter((m: any) =>
     !m.default.order
 );
 members.push(...regularMembers);
-
-import Layout from '../layouts/Layout.astro';
-import Hero from '../components/hero.astro';
-import '../styles/pages/members.scss';
-import '../styles/photos.scss';
 ---
 <Layout title="Members">
     <main id="content">
