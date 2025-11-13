@@ -6,7 +6,7 @@ import LargeImage from '../largeImage.astro'
 
 const { carouselIndex } = Astro.props
 
-const imags = import.meta.glob(`../../../members/*/portfolio/*/info.js`, {eager:true})
+const imags = import.meta.glob(`../../../members/*/portfolio/*/info.js`, {eager: true})
 
 var images = []
 for (const path in imags) {

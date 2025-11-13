@@ -52,7 +52,7 @@ import '../styles/photos.scss'
                 <h1>Club Members</h1>
                 {
                     // Map through the members and display them
-                    members.map((m) => {
+                    members.map((m: any) => {
                         const member = m.default || m
 
                         // Only display active members whose username does not start with '_'
