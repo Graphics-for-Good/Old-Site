@@ -21,6 +21,7 @@ import '../styles/components/infobox.scss'
         <div class="infobox-inner"></div>
       </dialog>
       <!-- Include the infobox script with inline attributes -->
+      { /* @ts-ignore */ }
       <script src="/infobox.js" is:inline infoboxTransitionTime={infoboxTransitionTime} msg={msg} infoboxEnabled={infoboxEnabled}></script>
     </>
   ) : ''

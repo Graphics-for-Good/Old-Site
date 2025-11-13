@@ -1,4 +1,4 @@
-@import '../variables.scss';
+@use '../variables.scss' as *;
 
 // When a checkbox inside .img-parent is checked, clip the overflow of the html element
 html:has(.img-parent > input[type="checkbox"]:checked) {

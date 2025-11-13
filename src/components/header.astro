@@ -24,18 +24,18 @@ var pages = await Astro.glob('../pages/*.astro')
 var links = []
 
 // Add the Home link to the links array
-pages.map(page => {
+pages.map((page: any) => {
   var link = getLink(page)
-  if (!link) return
+  if (!link || typeof link !== 'object' || !link.name) return
   if (link.name === 'Home') {
     links.push(link)
   }
 })
 
 // Add other links to the links array
-pages.map(page => {
+pages.map((page: any) => {
   var link = getLink(page)
-  if (!link) return
+  if (!link || typeof link !== 'object' || !link.name) return
   if (link.name !== 'Home') {
     if (link.path) {
       links.push(link)
@@ -44,20 +44,20 @@ pages.map(page => {
 })
 
 // Function to generate a link object from a page
-function getLink(link) {
+function getLink(link: any) {
   var lPath = link.url
   var hasHome = false
-  
+
   var fileName = lPath
-  if (!fileName) return
+  if (!fileName) return null
   if (fileName.startsWith('/')) fileName = fileName.slice(1)
   if (fileName === '' && !hasHome) {
     fileName = 'home'
     hasHome = true
   }
-  else if (fileName.startsWith('_')) return ''
-  else if (fileName.startsWith('[') && fileName.endsWith(']')) return {}
-  else if (parseInt(fileName)) return {}
+  else if (fileName.startsWith('_')) return null
+  else if (fileName.startsWith('[') && fileName.endsWith(']')) return null
+  else if (parseInt(fileName)) return null
 
   var rep = pathChanges.filter(r => r.key === fileName)
   if (rep.length > 0) fileName = rep[0].value
@@ -110,8 +110,7 @@ function getLink(link) {
           </label>
         </div>
         {
-          // Render navigation links
-          links.map(link => {
+          links.map((link: any) => {
             var lPath = link.path
             var extraClasses = ''
 
