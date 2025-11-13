@@ -108,15 +108,15 @@ userData.portfolio = portfolioImgs
       userData.status ? 
         <section>
           {
-            (userData.status === 'active' && userData.pfp) ? <img class="pfp" id="pfp" src={userData.pfp.url} /> : ''
+            (userData.status === 'active' && userData.pfp?.url) ? <img class="pfp" id="pfp" src={userData.pfp.url} /> : ''
           }
           <h1 class="name" id="name">{userData.name}</h1>
           {
-            (userData.status === 'active' && userData.email) ? <a class="email" id="email" href={`mailto:${userData.email.address}`}>{userData.email.address}</a> : ''
+            (userData.status === 'active' && userData.email?.address) ? <a class="email" id="email" href={`mailto:${userData.email.address}`}>{userData.email.address}</a> : ''
           }
           {
-            (userData.status === 'active' && userData.location) ? 
-              <a class="location" id="location" href={userData.location.mapLink}>        
+            (userData.status === 'active' && userData.location?.mapLink) ?
+              <a class="location" id="location" href={userData.location.mapLink}>
                 <div></div>
                 <span>{userData.location.combined}</span>
               </a>
