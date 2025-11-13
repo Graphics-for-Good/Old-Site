@@ -40,8 +40,8 @@ export async function getStaticPaths() {
     });
 }
 
-// Get the redirect object from Astro params
-var { rObj } = Astro.params;
+// Get the redirect object from Astro props
+var { redirect: rObj } = Astro.props as any;
 
 // Set default values if rObj is not defined
 if (!rObj) rObj = def
