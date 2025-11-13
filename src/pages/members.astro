@@ -1,8 +1,7 @@
 ---
-// Import all member info files
-var theMembers = import.meta.glob('../../members/*/info.js', { eager: true });
-var allMembers = Object.values(theMembers) as any[];
-var members: any[] = [];
+const memberGlob = import.meta.glob('../../members/*/info.js', { eager: true });
+const allMembers = Object.values(memberGlob) as any[];
+const members: any[] = [];
 
 // Sort members by order first
 const orderedMembers = allMembers
@@ -33,48 +32,35 @@ const regularMembers = allMembers.filter((m: any) =>
 );
 members.push(...regularMembers);
 
-// Import the Layout component
-import Layout from '../layouts/Layout.astro'
-// Import the Hero component
-import Hero from '../components/hero.astro'
-
-// Import the stylesheet for the members page and photos
-import '../styles/pages/members.scss'
-import '../styles/photos.scss'
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/hero.astro';
+import '../styles/pages/members.scss';
+import '../styles/photos.scss';
 ---
-<!-- Use the Layout component and set the page title to "Members" -->
 <Layout title="Members">
-    <!-- Main content area -->
     <main id="content">
-        <!-- Use the Hero component with a class of "fullHeight" -->
         <Hero classItems="fullHeight">
             <ul id="menu">
                 <h1>Club Members</h1>
-                {
-                    // Map through the members and display them
-                    members.map((m: any) => {
-                        const member = m.default || m
-
-                        // Only display active members whose username does not start with '_'
-                        if (!member.username.startsWith('_') && member.status === 'active') {
-                            const username = member.username
-                            const role = !!member.role ? member.role.name === 'Member' ? '' : member.role.name : ''
-
-                            return (
-                                <a href={`/members/${username}/`}>
-                                    <li>
-                                        {member.name}
-                                        {!!role && <span id="tag">({role})</span>}
-                                    </li>
-                                </a>
-                            )
-                        }
-                    })
-                }
+                {members.map((m: any) => {
+                    const member = m.default || m
+                    if (!member.username?.startsWith('_') && member.status === 'active') {
+                        const username = member.username
+                        const role = member.role && member.role.name !== 'Member' ? member.role.name : ''
+                        return (
+                            <a href={`/members/${username}/`}>
+                                <li>
+                                    {member.name}
+                                    {role && <span id="tag">({role})</span>}
+                                </li>
+                            </a>
+                        )
+                    }
+                    return null
+                })}
             </ul>
         </Hero>
     </main>
-    <!-- Inline script to remove query parameters from the URL -->
     <script is:inline>
         if (location.href.includes('?m=')) {
             location.href = location.pathname
