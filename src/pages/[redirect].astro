@@ -73,6 +73,7 @@ var title = getTitle(rObj.slug)
             <!-- Meta tag for immediate redirect -->
             <meta http-equiv="refresh" content={`0; url=${rObj.dest}`} />        
             <!-- Inline script for immediate redirect is JS ios present -->
+            { /* @ts-ignore */ }
             <script url={rObj.dest} is:inline>location.replace(document.currentScript.getAttribute('url'))</script>
         </head>
         <body>
@@ -86,14 +87,6 @@ var title = getTitle(rObj.slug)
     <!-- Main content area with a class of "frame-page" -->
     <main id="content" class="frame-page">
         <!-- Embed an iframe with the destination URL -->
-        <iframe frameborder="0" src={rObj.dest} class="frame">
-            Please click <a href={rObj.dest}>Here</a> to view the page!
-            <!-- Inline script for fallback redirect -->
-            <script dest={rObj.dest} is:inline>
-                var dest = document.currentScript.getAttribute('dest')
-                if (!dest) dest = '/'
-                location.replace(dest)
-            </script>
-        </iframe>
+        <iframe frameborder="0" src={rObj.dest} class="frame" />
     </main>
 </Layout>

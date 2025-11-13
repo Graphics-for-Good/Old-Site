@@ -53,11 +53,13 @@ import '../styles/photos.scss'
     <!-- Section for photos with carousels -->
     <section class="photos">
       <Carousels>
+        { /* @ts-ignore */ }
         <section id="mwork" align="center">
           <h1>Member Work</h1>
           <WorkCarousel carouselIndex="0" />
         </section>
         <div class="hHr" style="--width: 850px;"></div>
+        { /* @ts-ignore */ }
         <section id="cphotos" align="center">
           <h1>Club Photos</h1>
           <ClubCarousel carouselIndex="1" />

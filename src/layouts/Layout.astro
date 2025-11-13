@@ -66,6 +66,7 @@ var canonicalUrl = new URL(Astro.url.pathname, astroSite)
     <!-- Include the InfoBox and Modal components -->
     <InfoBox />
     <Modal />
+    { /* @ts-ignore */ }
     <span style="display: none;" hidden tElement id="tElement"></span>
     <script>
       // Add a bottom border to the header if there is no hero section and the path is not '/portal/'

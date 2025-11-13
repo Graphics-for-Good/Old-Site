@@ -23,11 +23,13 @@ import '../styles/components/largeImage.scss'
         <!-- Display the full resolution URL for debugging purposes -->
         <!-- <pre>{fullRes}</pre> -->
         <!-- Render the main image -->
+        { /* @ts-ignore */ }
         <img id={id || null} src={src.toString()} style={`--bg: url('${src}')`} alt={alt || ''} orientation={orientation || ''} draggable={draggable || false} loading="lazy" decoding="async" />
         {
             // Conditionally render an iframe with the full resolution image if available
             !!fullRes ? (
                 <iframe id={id || null} src={fullRes.toString()}>
+                    { /* @ts-ignore */ }
                     <img id={id || null} src={src.toString()} style={`--bg: url('${src.toString()}')`} alt={alt || ''} orientation={orientation || ''} draggable={draggable || false} loading="lazy" decoding="async" />
                 </iframe>
             ) : ''

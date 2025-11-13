@@ -58,22 +58,22 @@ function firstName(user) {
 }
 
 // Import all portfolio images
-const imgs = import.meta.glob(`../../../members/*/portfolio/*/info.js`, {eager:true})
-const pImgs = []
+const imgs = import.meta.glob(`../../../members/*/portfolio/*/info.js`, {eager:true}) as Record<string, any>
+const pImgs: any[] = []
 
 for (const path in imgs) {
-  pImgs.push(imgs[path].default as any)
+  pImgs.push(imgs[path].default)
 }
 
 // Function to get static paths for member profiles
 export async function getStaticPaths() {
   var userDatas = await Astro.glob('../../../members/*/info.js')
 
-  return userDatas.map(userData => {
-    if (userData.default) userData = userData.default
+  return userDatas.map((userData: any) => {
+    const data = userData.default || userData
     return {
-      params: {username: userData.username},
-      props: { userData },
+      params: {username: data.username},
+      props: { userData: data },
     }
   });
 }
