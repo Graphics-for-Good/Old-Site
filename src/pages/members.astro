@@ -64,9 +64,7 @@ import '../styles/photos.scss'
                                 <a href={`/members/${username}/`}>
                                     <li>
                                         {member.name}
-                                        {
-                                            !!role ? <span id="tag">({role})</span> : ''
-                                        }
+                                        {!!role && <span id="tag">({role})</span>}
                                     </li>
                                 </a>
                             )
