@@ -4,12 +4,12 @@ import LargeImage from '../largeImage.astro'
 
 const { carouselIndex } = Astro.props
 
-const imags = import.meta.glob(`../../../members/*/portfolio/*/info.js`, {eager:true})
+const imags = import.meta.glob(`../../../members/*/portfolio/*/info.js`, {eager:true}) as Record<string, any>
 
-var images = []
+var images: any[] = []
 for (const path in imags) {
     var img = imags[path].default
-    images.push(img as any)
+    images.push(img)
 }
 
 function getFName(str) {
