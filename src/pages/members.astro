@@ -1,13 +1,13 @@
 ---
 // Import all member info files
 var theMembers = import.meta.glob('../../members/*/info.js', { eager: true });
-var allMembers = Object.values(theMembers);
-var members = [];
+var allMembers = Object.values(theMembers) as any[];
+var members: any[] = [];
 
 // Sort members by order first
 const orderedMembers = allMembers
-    .filter(m => m.default.order)
-    .sort((a, b) => (a.default.order || 0) - (b.default.order || 0));
+    .filter((m: any) => m.default.order)
+    .sort((a: any, b: any) => (a.default.order || 0) - (b.default.order || 0));
 
 members.push(...orderedMembers);
 
