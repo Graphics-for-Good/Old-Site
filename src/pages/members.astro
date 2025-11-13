@@ -14,21 +14,21 @@ members.push(...orderedMembers);
 // Get unique roles excluding 'Member' and sort them
 const roleMembers = [...new Set(
     allMembers
-        .filter(m => m.default.role?.name && m.default.role.name !== 'Member' && !m.default.order)
-        .map(m => m.default.role.name)
+        .filter((m: any) => m.default.role?.name && m.default.role.name !== 'Member' && !m.default.order)
+        .map((m: any) => m.default.role.name)
 )].sort();
 
 // Add members by role
 roleMembers.forEach(role => {
-    const membersWithRole = allMembers.filter(m => 
+    const membersWithRole = allMembers.filter((m: any) =>
         m.default.role?.name === role && !m.default.order
     );
     members.push(...membersWithRole);
 });
 
 // Add remaining regular members
-const regularMembers = allMembers.filter(m => 
-    (!m.default.role || m.default.role.name === 'Member') && 
+const regularMembers = allMembers.filter((m: any) =>
+    (!m.default.role || m.default.role.name === 'Member') &&
     !m.default.order
 );
 members.push(...regularMembers);
