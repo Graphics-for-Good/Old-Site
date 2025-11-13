@@ -52,13 +52,13 @@ import '../styles/photos.scss'
                 <h1>Club Members</h1>
                 {
                     // Map through the members and display them
-                    members.map((member) => {
-                        if (member.default) member = member.default
+                    members.map((m) => {
+                        const member = m.default || m
 
                         // Only display active members whose username does not start with '_'
                         if (!member.username.startsWith('_') && member.status === 'active') {
-                            var username = member.username
-                            var role = !!member.role ? member.role.name === 'Member' ? '' : member.role.name : ''
+                            const username = member.username
+                            const role = !!member.role ? member.role.name === 'Member' ? '' : member.role.name : ''
 
                             return (
                                 <a href={`/members/${username}/`}>
